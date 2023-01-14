@@ -17,7 +17,7 @@ interface Props {
 export const FixedNavbar: React.FC<Props> = ({ menu, setMenu, setIndex, setLink }) => {
   const { systemTheme, theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const [cart, setCart] = useState(false)
+  const [cart, setCart] = useState('hidden')
 
   useEffect(() => {
     setMounted(true)
@@ -55,12 +55,16 @@ export const FixedNavbar: React.FC<Props> = ({ menu, setMenu, setIndex, setLink 
             <Link className='mt-auto mb-auto font-light' href='/'>Inicio</Link>
             <Link className='mt-auto mb-auto font-light' href='/tienda'>Tienda</Link>
             <CiUser className='mt-auto mb-auto text-2xl cursor-pointer' />
-            <BsBag onMouseEnter={() => setCart(true)} onMouseLeave={() => setCart(false)} className='mt-auto mb-auto text-xl ml-1 cursor-pointer h-full' />
+            <BsBag onMouseEnter={() => setCart('flex')} onMouseLeave={() => setCart('hidden')} className='mt-auto mb-auto text-xl ml-1 cursor-pointer h-full' />
             {renderThemeChanger()}
           </div>
           <div className='flex gap-4 530:hidden'>
             <CiUser className='mt-auto mb-auto text-2xl cursor-pointer' />
-            <BsBag className='m-auto text-xl ml-1 cursor-pointer h-full' onMouseEnter={() => setCart(true)} onMouseLeave={() => setCart(false)} />
+            {
+              cart === 'hidden'
+                ? <BsBag className='m-auto text-xl ml-1 cursor-pointer h-full' onClick={() => setCart('flex')} />
+                : <IoCloseOutline className='m-auto text-xl ml-1 cursor-pointer h-full' onClick={() => setCart('hidden')} />
+            }
             {renderThemeChanger()}
             {
               menu === 'ml-520'
@@ -84,19 +88,13 @@ export const FixedNavbar: React.FC<Props> = ({ menu, setMenu, setIndex, setLink 
           </div>
         </div>
       </div>
-      {
-        cart === true
-          ? (
-          <div className='w-full flex absolute'>
-            <div className='w-1440 flex m-auto'>
-              <div className='ml-auto flex w-80 400:w-96' onMouseEnter={() => setCart(true)} onMouseLeave={() => setCart(false)}>
-                <NavbarCart />
-              </div>
-            </div>
+      <div className={`${cart} w-full flex absolute`}>
+        <div className='w-1440 flex m-auto'>
+          <div className='ml-auto flex w-80 400:w-96' onMouseEnter={() => setCart('flex')} onMouseLeave={() => setCart('hidden')}>
+            <NavbarCart />
           </div>
-          )
-          : ''
-      }
+        </div>
+      </div>
     </div>
     </>
   )

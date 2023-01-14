@@ -50,14 +50,14 @@ export const MainLayout: React.FC<PropsWithChildren<Props>> = ({ children, title
       <Navbar menu={menu} setMenu={setMenu} setIndex={setIndex} setLink={setLink} />
       {
         scrollPosition >= 30.5
-          ? <div className={`${index} w-full fixed flex -mt-8 h-full`}>
+          ? <div className={`${index} w-full fixed flex -mt-8 h-full 530:hidden`}>
             <div className='w-1/6' onClick={() => setMenu('ml-520')} />
             <div className={`${menu} transition-all duration-200 bg-white w-5/6 p-4 dark:bg-neutral-900`}>
               <Link className={`mt-auto mb-auto font-light ${link}`} href='/'>Inicio</Link>
               <Link className={`mt-auto mb-auto font-light ${link}`} href='/tienda'>Tienda</Link>
             </div>
           </div>
-          : <div className={`${index} w-full fixed flex h-full`}>
+          : <div className={`${index} flex w-full fixed h-full 530:hidden`}>
             <div className='w-1/6' onClick={() => setMenu('ml-520')} />
             <div className={`${menu} transition-all duration-200 bg-white w-5/6 p-4 dark:bg-neutral-900`}>
               <Link className={`mt-auto mb-auto font-light ${link}`} href='/'>Inicio</Link>
