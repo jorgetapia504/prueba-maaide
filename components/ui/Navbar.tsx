@@ -95,7 +95,7 @@ export const Navbar: React.FC<Props> = ({ menu, setMenu, setIndex, setLink }) =>
           ? (
           <div className='w-full flex absolute'>
             <div className='w-1440 flex m-auto'>
-              <div className='ml-auto flex w-96' onMouseEnter={() => setCart(true)} onMouseLeave={() => setCart(false)}>
+              <div className='ml-auto flex w-80 400:w-96' onMouseEnter={() => setCart(true)} onMouseLeave={() => setCart(false)}>
                 <NavbarCart />
               </div>
             </div>

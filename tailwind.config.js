@@ -31,7 +31,8 @@ module.exports = {
         'mobile': '435px',
         'mobile2': '388px',
         'xl2': '1288px',
-        '530': '530px'
+        '530': '530px',
+        '400': '400px'
       },
       fontSize: {
         '15': '15px'
