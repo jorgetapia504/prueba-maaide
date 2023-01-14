@@ -35,6 +35,9 @@ module.exports = {
       },
       fontSize: {
         '15': '15px'
+      },
+      boxShadow: {
+        'det': '0 1px 8px 0px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
       }
     },
     fontFamily: {

@@ -28,11 +28,11 @@ export const FixedNavbar: React.FC<Props> = ({ menu, setMenu, setIndex, setLink 
     const currentTheme = theme === 'system' ? systemTheme : theme
     if ( currentTheme === 'dark' ) {
       return (
-        <button onClick={() => setTheme('light')}><BsFillMoonFill className='text-slate-600 ml-2' /></button>
+        <button onClick={() => setTheme('light')}><BsFillMoonFill className='text-slate-600' /></button>
       )
     } else {
       return (
-        <button onClick={() => setTheme('dark')}><BsFillSunFill className='text-slate-500 ml-2' /></button>
+        <button onClick={() => setTheme('dark')}><BsFillSunFill className='text-slate-500' /></button>
       )
     }
   }
@@ -69,7 +69,7 @@ export const FixedNavbar: React.FC<Props> = ({ menu, setMenu, setIndex, setLink 
                     setIndex('z-30')
                     setLink('block')
                   }}>
-                  <FiMenu className='text-2xl ml-2' />
+                  <FiMenu className='text-2xl' />
                 </button>
                 : <button onClick={() => {
                     setMenu('ml-520')
@@ -78,7 +78,7 @@ export const FixedNavbar: React.FC<Props> = ({ menu, setMenu, setIndex, setLink 
                       setLink('hidden')
                     }, 100)
                   }}>
-                  <IoCloseOutline className='text-2xl ml-2' />
+                  <IoCloseOutline className='text-2xl' />
                 </button>
             }
           </div>
