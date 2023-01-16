@@ -52,7 +52,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
         <p className='m-auto text-15'>Envío gratis en 24 horas para todo Santiago</p>
       </div>
       <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full transition-all duration-200 z-30 dark:bg-neutral-900 dark:border-neutral-800'>
-        <div className='m-auto w-1440 flex justify-between pl-2 pr-2'>
+        <div className='m-auto w-1440 flex justify-between z-40 pl-2 pr-2'>
           {
             !mounted
               ? ''
@@ -98,14 +98,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }
           </div>
         </div>
-        <div className={`${cart} w-full z-40 absolute top-14`}>
+        <div className={`${cart} w-full z-50 absolute top-14`}>
           <div className='w-1440 flex m-auto'>
             <div className='ml-auto flex w-80 400:w-96' onMouseEnter={() => setCart('flex')} onMouseLeave={() => setCart('hidden')}>
               <NavbarCart />
             </div>
           </div>
         </div>
-        <div className={`${index} w-full absolute justify-between 530:hidden`} style={{ top: '60px', height: 'calc(100vh - 91.33px)' }}>
+        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '60px', height: 'calc(100vh - 91.33px)' }}>
           <div className='w-1/6' onClick={() => {
             setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
             setTimeout(() => {
