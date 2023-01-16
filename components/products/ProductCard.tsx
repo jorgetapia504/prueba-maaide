@@ -24,13 +24,12 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <div>
       <NextLink href={`productos/${ product.slug }`} prefetch={ false }>
-        <Image
+        <img
           src={ productImage } alt={ productImage }
           onLoad={ () => setIsImageLoaded(true) }
           onMouseEnter={ () => setIsHovered(true) }
           onMouseLeave={ () => setIsHovered(false) }
-          width={250}
-          height={250}
+          className='w-44 580:w-52'
           style={{ borderRadius: '8px' }}
         />
       </NextLink>
