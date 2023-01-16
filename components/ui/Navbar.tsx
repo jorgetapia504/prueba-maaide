@@ -6,6 +6,7 @@ import { CiUser } from 'react-icons/ci'
 import { NavbarCart } from '../cart'
 import { FiMenu } from 'react-icons/fi'
 import { IoCloseOutline } from 'react-icons/io5'
+import { AiOutlineRight } from 'react-icons/ai'
 
 interface Props {
   menu: any,
@@ -39,8 +40,8 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   }
 
   useEffect(() => {
-    if (index === 'block') {
-      setMenu('ml-0')
+    if (index === 'flex') {
+      setMenu('w-5/6 p-6')
     }
   }, [index])
 
@@ -66,6 +67,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
           <div className='hidden gap-6 530:flex'>
             <Link className='mt-auto mb-auto font-light' href='/'>Inicio</Link>
             <Link className='mt-auto mb-auto font-light' href='/tienda'>Tienda</Link>
+            <Link className='mt-auto mb-auto font-light' href='/contacto'>Contacto</Link>
             <CiUser className='mt-auto mb-auto text-2xl cursor-pointer' />
             <BsBag className='m-auto text-xl ml-1 cursor-pointer h-full' onMouseEnter={() => setCart('flex')} onMouseLeave={() => setCart('hidden')} />
             {renderThemeChanger()}
@@ -79,14 +81,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }
             {renderThemeChanger()}
             {
-              menu === 'ml-520'
+              menu === 'w-0 pl-0 pr-0 pt-6 pb-6'
                 ? <button onClick={() => {
-                    setIndex('block')
+                    setIndex('flex')
                   }}>
                   <FiMenu className='text-2xl' />
                 </button>
                 : <button onClick={() => {
-                    setMenu('ml-520')
+                    setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
                     setTimeout(() => {
                       setIndex('hidden')
                     }, 100)
@@ -103,16 +105,17 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             </div>
           </div>
         </div>
-        <div className={`${index} w-full absolute flex 530:hidden`} style={{ top: '60px', height: 'calc(100vh - 91.33px)' }}>
+        <div className={`${index} w-full absolute justify-between 530:hidden`} style={{ top: '60px', height: 'calc(100vh - 91.33px)' }}>
           <div className='w-1/6' onClick={() => {
-            setMenu('ml-520')
+            setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
             setTimeout(() => {
-              setIndex('-z-10')
+              setIndex('hidden')
             }, 100)
           }} />
-          <div className={`${menu} transition-all duration-200 shadow-md bg-white w-5/6 p-4 dark:bg-neutral-900`}>
-            <Link className={`mt-auto mb-auto font-light ${index}`} href='/'>Inicio</Link>
-            <Link className={`mt-auto mb-auto font-light ${index}`} href='/tienda'>Tienda</Link>
+          <div className={`${menu} transition-all duration-200 shadow-md bg-white overflow-hidden dark:bg-neutral-900`}>
+            <Link className={`mb-4 font-light flex pb-2 border-b`} href='/'>Inicio<AiOutlineRight className='ml-auto text-lg' /></Link>
+            <Link className={`mb-4 font-light flex pb-2 border-b`} href='/tienda'>Tienda<AiOutlineRight className='ml-auto text-lg' /></Link>
+            <Link className={`mb-4 font-light flex pb-2 border-b`} href='/contacto'>Contacto<AiOutlineRight className='ml-auto text-lg' /></Link>
           </div>
         </div>
       </div>
