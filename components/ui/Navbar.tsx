@@ -112,7 +112,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setIndex('hidden')
             }, 100)
           }} />
-          <div className={`${menu} transition-all duration-200 shadow-md bg-white overflow-hidden dark:bg-neutral-900`}>
+          <div className={`${menu} transition-all duration-200 shadow-md bg-white overflow-hidden dark:border dark:border-neutral-800 dark:bg-neutral-900`}>
             <Link className={`mb-4 font-light flex pb-2 border-b`} href='/'>Inicio<AiOutlineRight className='ml-auto text-lg' /></Link>
             <Link className={`mb-4 font-light flex pb-2 border-b`} href='/tienda'>Tienda<AiOutlineRight className='ml-auto text-lg' /></Link>
             <Link className={`mb-4 font-light flex pb-2 border-b`} href='/contacto'>Contacto<AiOutlineRight className='ml-auto text-lg' /></Link>

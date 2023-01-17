@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React, { PropsWithChildren, useEffect, useState } from 'react'
-import { Footer, Navbar } from '../ui'
+import { Footer, Navbar, Subscribe } from '../ui'
 
 interface Props {
   title: string
@@ -43,6 +43,7 @@ export const MainLayout: React.FC<PropsWithChildren<Props>> = ({ children, title
       <Navbar menu={menu} setMenu={setMenu} setIndex={setIndex} index={index}>
         { children }
       </Navbar>
+      <Subscribe />
       <Footer />
     </>
   )

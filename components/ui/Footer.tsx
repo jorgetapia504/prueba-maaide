@@ -1,7 +1,39 @@
+import Link from 'next/link'
 import React from 'react'
+import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa'
 
 export const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className='flex pl-4 pr-4 pt-10 pb-10 bg-neutral-900'>
+      <div className='w-1270 m-auto'>
+        <div className='flex gap-4 justify-between flex-wrap pb-6 border-b'>
+          <div>
+            <img className='w-56 mb-3' src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' />
+            <p className='text-white font-light mb-4'>contacto@blaspod.cl</p>
+            <div className='flex gap-4'>
+              <FaFacebookF className='text-white text-xl' />
+              <FaInstagram className='text-white text-xl' />
+              <FaTiktok className='text-white text-xl' />
+            </div>
+          </div>
+          <div className='mt-6'>
+            <h3 className='text-lg text-white mb-2'>TIENDA</h3>
+            <Link className='block text-white font-light' href='/tienda'>Productos</Link>
+            <Link className='block text-white font-light' href='/audifonos'>Audífonos inalámbricos</Link>
+            <Link className='block text-white font-light' href='/relojes'>Relojes inteligentes</Link>
+            <Link className='block text-white font-light' href='/carcasas'>Carcasas Airpods</Link>
+          </div>
+          <div className='mt-6'>
+            <h3 className='text-lg text-white mb-2'>POLITICAS</h3>
+            <Link className='block text-white font-light' href='/politicas-privacidad'>Politicas de privacidad</Link>
+            <Link className='block text-white font-light' href='/terminos-y-condiciones'>Terminos y condiciones</Link>
+            <Link className='block text-white font-light' href='/envio'>Información de envío</Link>
+          </div>
+        </div>
+        <div className='mt-6'>
+          <p className='text-white'>© 2022 Blaspod Store. Todos los derechos reservados</p>
+        </div>
+      </div>
+    </div>
   )
 }
