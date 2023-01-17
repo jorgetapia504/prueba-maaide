@@ -22,7 +22,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   }, [isHovered, product.images])
 
   return (
-    <div>
+    <div className='w-36 580:w-56 420:w-44'>
       <NextLink href={`productos/${ product.slug }`} prefetch={ false }>
         <img
           src={ productImage } alt={ productImage }
@@ -47,8 +47,8 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         </div>
         {
           product.variations
-            ? <Button><Link href={`/${product.slug}`}>Seleccionar variación</Link></Button>
-            : <Button>Añadir al carrito</Button>
+            ? <button className='pt-2 pb-2 pl-3 pr-3 text-sm rounded-md bg-main text-white 580:pl-5 580:pr-5 420:text-base 420:pl-4 420:pr-4'><Link href={`/${product.slug}`}>Seleccionar variación</Link></button>
+            : <button className='pt-2 pb-2 pl-3 pr-3 text-sm rounded-md bg-main text-white 580:pl-5 580:pr-5 420:text-base 420:pl-4 420:pr-4'>Añadir al carrito</button>
         }
       </div>
     </div>

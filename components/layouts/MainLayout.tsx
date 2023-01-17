@@ -42,9 +42,9 @@ export const MainLayout: React.FC<PropsWithChildren<Props>> = ({ children, title
       </Head>
       <Navbar menu={menu} setMenu={setMenu} setIndex={setIndex} index={index}>
         { children }
+        <Subscribe />
+        <Footer />
       </Navbar>
-      <Subscribe />
-      <Footer />
     </>
   )
 }
