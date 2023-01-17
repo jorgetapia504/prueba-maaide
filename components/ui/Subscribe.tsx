@@ -22,11 +22,11 @@ export const Subscribe = () => {
           </div>
           <div className='flex gap-2'>
             <IoIosTimer className='text-white text-4xl' />
-            <p className='text-white m-auto font-light'>Recibe en 24 y 48 horas</p>
+            <p className='text-white m-auto font-light'>Recibe en 24 y 48 horas en todo Santiago</p>
           </div>
           <div className='flex gap-2'>
             <BsCreditCard2Back className='text-white text-4xl' />
-            <p className='text-white m-auto font-light'>Pago seguro</p>
+            <p className='text-white m-auto font-light'>Pago seguro en nuestra web</p>
           </div>
         </div>
       </div>

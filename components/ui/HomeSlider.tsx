@@ -19,7 +19,7 @@ export const HomeSlider: React.FC<Props> = ({ images }) => {
         images.map(image => {
           return (
             <div className={styles['each-slide']} key={ image }>
-              <div className='fadeIn' style={{
+              <div className='h-400 lg:h-500 xl:h-600 2xl:h-700' style={{
                 backgroundImage: `url(${ image })`,
                 backgroundSize: 'cover'
               }}>
