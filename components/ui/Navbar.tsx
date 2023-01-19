@@ -100,12 +100,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
         </div>
         <div className={`${cart} w-full z-50 absolute top-14`}>
           <div className='w-1440 flex m-auto'>
-            <div className='ml-auto flex w-80 400:w-96' onMouseEnter={() => setCart('flex')} onMouseLeave={() => setCart('hidden')}>
+            <div className='ml-auto h-fit flex w-80 400:w-96' onMouseEnter={() => setCart('flex')} onMouseLeave={() => setCart('hidden')}>
               <NavbarCart />
             </div>
           </div>
         </div>
-        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '61px', height: 'calc(100vh - 60px)' }}>
+        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '60px', height: 'calc(100vh - 60px)' }}>
           <div className='w-1/6' onClick={() => {
             setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
             setTimeout(() => {
