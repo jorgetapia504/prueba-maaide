@@ -2,7 +2,6 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import React, { useState, useEffect } from 'react'
 import { ICartProduct, IProduct } from '../../interfaces'
 import { dbProducts } from '../../database'
-import { MainLayout } from '../../components/layouts'
 import { Button, ButtonNone, ItemCounter, ProductSlider } from '../../components/ui'
 import NextLink from 'next/link'
 import { NumberFormat } from '../../utils'
@@ -53,7 +52,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   let quantity = 0
 
   return (
-    <MainLayout title={ product.name } description={ product.description }>
+    <>
       {
         scrollPosition >= 400
           ? <ProductDetails product={product} setTempCartProduct={setTempCartProduct} tempCartProduct={tempCartProduct} />
@@ -154,7 +153,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
           </div>
         </div>
       </div>
-    </MainLayout>
+    </>
   )
 }
 
