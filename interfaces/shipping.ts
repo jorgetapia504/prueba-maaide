@@ -13,7 +13,7 @@ export interface City {
   coverageName: string
 }
 
-export interface Shipping {
+export interface IShipping {
   additionalServices: string[]
   conditions: string
   deliveryType: number

@@ -9,4 +9,5 @@ export interface ICartProduct {
   variation?: IVariation
   slug: string
   quantity: number
+  stock?: number
 }

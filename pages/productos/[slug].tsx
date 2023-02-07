@@ -2,10 +2,13 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import React, { useState, useEffect } from 'react'
 import { ICartProduct, IProduct } from '../../interfaces'
 import { dbProducts } from '../../database'
-import { Button, ButtonNone, ItemCounter, ProductSlider } from '../../components/ui'
-import NextLink from 'next/link'
+import { ButtonAddToCart, ButtonNone, ItemCounter, ProductSlider, Spinner } from '../../components/ui'
 import { NumberFormat } from '../../utils'
-import { NoReviews, ProductDetails, ProductOffer, Reviews, ShippingCost } from '../../components/products'
+import { NoReviews, ProductDetails, ProductList, ProductOffer, Reviews, ShippingCost } from '../../components/products'
+import { ReviewsProduct, NoReviewsProduct } from '../../components/products/ReviewsProduct'
+import { useProducts } from '../../hooks'
+import Link from 'next/link'
+import Head from 'next/head'
 
 interface Props {
   product: IProduct
@@ -20,9 +23,12 @@ const ProductPage: React.FC<Props> = ({ product }) => {
     price: product.price,
     beforePrice: product.beforePrice,
     slug: product.slug,
-    quantity: 1
+    quantity: 1,
+    stock: product.stock
   })
   const [scrollPosition, setScrollPosition] = useState(0)
+
+  const { products, isLoading } = useProducts('/products')
 
   const handleScroll = () => {
     const position = window.scrollY
@@ -38,7 +44,8 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   }, [])
 
   const selectVariation = (e: any) => {
-    setTempCartProduct({...tempCartProduct, variation: e.target.value})
+    const variation = product.variations?.find(variation => variation.variation === e.target.value)
+    setTempCartProduct({...tempCartProduct, variation: variation})
   }
 
   const onUpdateQuantity = ( quantity: number ) => {
@@ -53,24 +60,29 @@ const ProductPage: React.FC<Props> = ({ product }) => {
 
   return (
     <>
+      <Head>
+        <title>{product.name}</title>
+      </Head>
       {
         scrollPosition >= 400
           ? <ProductDetails product={product} setTempCartProduct={setTempCartProduct} tempCartProduct={tempCartProduct} />
           : ''
       }
-      <div className='flex mt-2'>
-        <div className='block m-auto w-full gap-4 p-4 lg:flex xl2:w-1270 xl2:gap-8'>
+      <div className='flex p-4'>
+        <div className='block m-auto w-full gap-4 lg:flex xl2:w-1280 xl2:gap-8'>
           <div className='w-full lg:w-1/2'>
-            <p className='text-15 mb-4 font-light'><NextLink href='/tienda'>Tienda</NextLink> / <NextLink href={`/category/${ product.category }`}>{ product.category[0].toUpperCase() }{ product.category.substring(1) }</NextLink> / <NextLink href={`/product/${ product.slug }`}>{ product.name }</NextLink></p>
-            <div className='sticky top-32'>
+            <div className='mb-4'>
+              <span className='text-15 font-light'><Link href='/tienda'>Tienda</Link> / <Link href={`/category/${ product.category }`}>{ product.category[0].toUpperCase() }{ product.category.substring(1) }</Link> / <Link href={`/product/${ product.slug }`}>{ product.name }</Link></span>
+            </div>
+            <div className='sticky top-32 mb-0 1010:mb-10'>
               <ProductSlider images={ product.images } />
             </div>
           </div>
           <div className='w-full mt-2 lg:w-1/2 lg:mt-11'>
             {
               product.beforePrice
-                ? <div className={'fadeIn'}>
-                  <p className='bg-main w-fit text-white pt-2 pb-2 pl-4 pr-4 text-xl mb-2'>OFERTA</p>
+                ? <div className='mb-4'>
+                  <span className='bg-main w-fit text-white pt-2 pb-2 pl-4 pr-4 text-xl mb-2'>OFERTA</span>
                 </div>
                 : ''
             }
@@ -86,24 +98,24 @@ const ProductPage: React.FC<Props> = ({ product }) => {
             }
             {
               product.reviews
-                ? <Reviews product={product} quantity={quantity} stars={stars} />
+                ? <Reviews reviews={product.reviews} quantity={quantity} stars={stars} />
                 : ''
             }
             <div className='flex gap-2 mb-2'>
-              <p className='text-lg'>${ NumberFormat(product.price) }</p>
+              <span>${ NumberFormat(product.price) }</span>
               {
                 product.beforePrice
-                  ? <p className='text-sm line-through font-light'>${ NumberFormat(product.beforePrice) }</p>
+                  ? <span className='text-sm line-through font-light'>${ NumberFormat(product.beforePrice) }</span>
                   : ''
               }
               {
                 product.beforePrice
-                  ? <p className='font-semibold text-green text-lg'>{-(Math.round((product.price * 100) / product.beforePrice)) + 100}% OFF</p>
+                  ? <span className='font-semibold text-green'>{-(Math.round((product.price * 100) / product.beforePrice)) + 100}% OFF</span>
                   : ''
               }
             </div>
-            <p className='mb-2 font-light'>En <span className='text-green font-normal'>3 cuotas sin interes de ${NumberFormat(Math.round(product.price / 3))}</span></p>
-            <p className='mb-2 font-light'>Stock: { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</p>
+            <span className='mb-2 font-light text-sm block'>En <span className='text-green font-normal'>3 cuotas sin interes de ${NumberFormat(Math.round(product.price / 3))}</span></span>
+            <span className='mb-2 font-light text-sm block'>Stock: { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</span>
             {
               product.variations
                 ? <select onChange={selectVariation} className='border p-1 rounded-md font-light mb-2'>
@@ -116,7 +128,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 </select>
                 : ''
             }
-            <div className='flex gap-2 pb-2'>
+            <div className='flex gap-2 pb-4 border-b dark:border-neutral-800'>
               <ItemCounter
                 currentValue={ tempCartProduct.quantity }
                 updatedQuantity={ onUpdateQuantity }
@@ -125,19 +137,18 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               {
                 product.variations
                   ? tempCartProduct.variation
-                    ? <Button>Añadir al Carrito</Button>
+                    ? <ButtonAddToCart tempCartProduct={tempCartProduct}>Añadir al Carrito</ButtonAddToCart>
                     : <ButtonNone>Añadir al Carrito</ButtonNone>
-                  : <Button>Añadir al Carrito</Button>
+                  : <ButtonAddToCart tempCartProduct={tempCartProduct}>Añadir al Carrito</ButtonAddToCart>
               }
             </div>
-            <div className='border-b dark:border-neutral-800 pb-6'>
-              <img className='w-80' src='https://res.cloudinary.com/blasspod/image/upload/v1672619452/blaspod/tarjetas_y8wdcq.png' />
+            <div className='border-b pb-4 mt-4 dark:border-neutral-800'>
+              <ShippingCost />
             </div>
-            <ShippingCost />
             {
               product.productsOffer
                 ? <div className='mt-4 border-b pb-4 dark:border-neutral-800'>
-                  <h3 className='text-xl mb-2'>Ofertas por la compra de este producto</h3>
+                  <h2 className='text-xl mb-2 font-light'>Ofertas por la compra de este producto</h2>
                   {
                     product.productsOffer.map(offer => <ProductOffer key={offer.products[0].slug} offer={offer} />)
                   }
@@ -145,14 +156,36 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 : ''
             }
             <div className='mt-4'>
-              <h3 className='text-xl mb-2'>Descripción</h3>
+              <h2 className='text-xl mb-2 font-light'>Descripción</h2>
               {product.description.split('|').map(des => {
-                return <p className='font-light mb-1' key={des}>{des}</p>
+                return <p className='font-light mb-1 text-sm' key={des}>{des}</p>
               })}
             </div>
           </div>
         </div>
       </div>
+      <div className='flex p-4'>
+        <div className='w-1280 m-auto'>
+          <h2 className='text-xl mb-2 font-light'>Evaluaciones de clientes</h2>
+          <span className='font-light mb-1'>Valoracion media</span>
+          {
+            product.reviews
+              ? <ReviewsProduct quantity={quantity} stars={stars} reviews={product.reviews} />
+              : <NoReviewsProduct />
+          }
+        </div>
+      </div>
+      {
+        isLoading
+          ? (
+            <div className="flex w-full">
+              <div className="m-auto mt-16 mb-16">
+                <Spinner />
+              </div>
+            </div>
+          )
+          : <ProductList products={ products } title='Productos recomendados' />
+      }
     </>
   )
 }

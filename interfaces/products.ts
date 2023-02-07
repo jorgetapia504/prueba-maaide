@@ -19,6 +19,7 @@ export interface IProduct {
 }
 
 export interface IReview {
+  _id?: string
   calification: number
   name: string
   email?: string

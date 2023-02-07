@@ -1,14 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { City, Region, IShipping } from '../../interfaces'
-import { FreeShipping, NumberFormat } from '../../utils'
+import { City, ISell, Region } from '../../interfaces'
 
-export const ShippingCost = () => {
+interface Props {
+  setShipping: any
+  sell: ISell
+  setSell: any
+}
+
+export const Shipping: React.FC<Props> = ({ setShipping, sell, setSell }) => {
 
   const [regions, setRegions] = useState<Region[]>()
   const [citys, setCitys] = useState<City[]>()
-  const [shipping, setShipping] = useState<IShipping[]>()
-  const [city, setCity] = useState('')
 
     const requestRegions = async () => {
         const request = await axios.get('https://testservices.wschilexpress.com/georeference/api/v1.0/regions', {
@@ -33,6 +36,7 @@ export const ShippingCost = () => {
           }
         })
         setCitys(request.data.coverageAreas)
+        setSell({ ...sell, region: e.target.value })
       }
     
       const cityChange = async (e: any) => {
@@ -58,13 +62,12 @@ export const ShippingCost = () => {
           }
         })
         setShipping(request.data.data.courierServiceOptions)
-        setCity(e.target.value)
+        setSell({ ...sell, city: e.target.value })
       }
 
   return (
-    <div>
-      <h2 className='text-xl mb-2 font-light'>Calcula los costos de envío</h2>
-      <select className='text-sm border p-1 rounded-md font-light dark:border-neutral-500' onChange={regionChange}>
+    <div className=''>
+      <select className='border text-sm p-2 rounded font-light dark:border-neutral-600 w-full mb-2' onChange={regionChange}>
         <option className='font-light'>Seleccionar Región</option>
         {
         regions !== undefined
@@ -74,33 +77,10 @@ export const ShippingCost = () => {
       </select>
       {
         citys !== undefined
-        ? <select className='text-sm block border p-1 rounded-md mt-2 font-light dark:border-neutral-500' onChange={cityChange}>
+        ? <select className='block border text-sm p-2 rounded font-light dark:border-neutral-600 w-full mb-2' onChange={cityChange}>
           <option className='font-light'>Seleccionar Ciudad</option>
           {citys.map(city => <option className='font-light' key={city.countyCode}>{city.countyName}</option>)}
         </select>
-        : ''
-      }
-      {
-        shipping !== undefined
-        ? <div className='flex flex-col gap-1 mt-2 '>
-          <span className='mt-1'>Envíos express:</span>
-          {FreeShipping.map(cityFree => {
-            if (cityFree === city) {
-              return <div className='flex justify-between p-2 border rounded-md dark:border-neutral-500' key={cityFree}>
-                <span className='font-light text-sm'>Envío gratis en 24 a 48 horas</span>
-                <span className='text-sm'>$0</span>
-              </div>
-            }
-            return null
-          })}
-          <span className='mt-1'>Chilexpress:</span>
-          {shipping.map(service => (
-            <div key={service.serviceDescription} className='flex justify-between p-2 border rounded-md dark:border-neutral-500'>
-              <span className='font-light text-sm'>{service.serviceDescription}</span>
-              <span className='text-sm'>${NumberFormat(Number(service.serviceValue))}</span>
-            </div>
-          ))}
-        </div>
         : ''
       }
     </div>

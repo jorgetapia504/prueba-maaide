@@ -1,10 +1,9 @@
 import React, { useMemo, useState } from 'react'
-import { IProduct } from '../../interfaces'
-import NextLink from 'next/link'
-import Image from 'next/image'
+import { ICartProduct, IProduct } from '../../interfaces'
 import { NumberFormat } from '../../utils'
-import { Button } from '../ui'
 import Link from 'next/link'
+import { ReviewsProductCard } from '.'
+import { Button2AddToCart } from '../ui'
 
 interface Props {
   product: IProduct
@@ -12,6 +11,16 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
 
+  const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
+    _id: product._id,
+    name: product.name,
+    image: product.images[0],
+    price: product.price,
+    beforePrice: product.beforePrice,
+    slug: product.slug,
+    quantity: 1,
+    stock: product.stock
+  })
   const [isHovered, setIsHovered] = useState(false)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
 
@@ -21,34 +30,51 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
       : product.images[0]
   }, [isHovered, product.images])
 
+  let stars = 0
+  let quantity = 0
+
   return (
-    <div className='w-36 580:w-56 420:w-44'>
-      <NextLink href={`productos/${ product.slug }`} prefetch={ false }>
+    <div className='inline-block p-2 m-auto w-full'>
+      <Link href={`productos/${ product.slug }`} className='flex' prefetch={ false }>
         <img
           src={ productImage } alt={ productImage }
           onLoad={ () => setIsImageLoaded(true) }
           onMouseEnter={ () => setIsHovered(true) }
           onMouseLeave={ () => setIsHovered(false) }
-          className='w-44 580:w-52'
+          className='m-auto w-44 580:w-52'
           style={{ borderRadius: '8px' }}
         />
-      </NextLink>
+      </Link>
       <div style={{ display: isImageLoaded ? 'block' : 'none' }}>
-        <NextLink href={`productos/${ product.slug }`} prefetch={ false }>
-          <p className='text-xl mt-2'>{ product.name }</p>
-        </NextLink>
+        {
+          product.reviews
+            ? product.reviews.map(review => {
+              stars = stars + review.calification
+              quantity = quantity + 1
+              return null
+            })
+            : ''
+        }
+        {
+          product.reviews
+            ? <ReviewsProductCard product={product} quantity={quantity} stars={stars} />
+            : ''
+        }
+        <Link href={`productos/${ product.slug }`} prefetch={ false }>
+          <span className='font-light'>{ product.name }</span>
+        </Link>
         <div className='flex gap-2 mt-1 mb-1'>
-          <p>${ NumberFormat(product.price) }</p>
+          <span className='font-light'>${ NumberFormat(product.price) }</span>
           {
             product.beforePrice
-              ? <p className='text-sm line-through'>${ NumberFormat(product.beforePrice) }</p>
+              ? <span className='text-sm line-through font-light'>${ NumberFormat(product.beforePrice) }</span>
               : ''
           }
         </div>
         {
           product.variations
-            ? <button className='pt-2 pb-2 pl-3 pr-3 text-sm rounded-md bg-main text-white 580:pl-5 580:pr-5 420:text-base 420:pl-4 420:pr-4'><Link href={`/${product.slug}`}>Seleccionar variación</Link></button>
-            : <button className='pt-2 pb-2 pl-3 pr-3 text-sm rounded-md bg-main text-white 580:pl-5 580:pr-5 420:text-base 420:pl-4 420:pr-4'>Añadir al carrito</button>
+            ? <button className='pt-1.5 pb-1.5 text-sm rounded-md bg-main text-white pl-6 pr-6 396:pl-8 396:pr-8'><Link href={`/productos/${product.slug}`}>Ver variantes</Link></button>
+            : <Button2AddToCart tempCartProduct={tempCartProduct}>Añadir al Carrito</Button2AddToCart>
         }
       </div>
     </div>

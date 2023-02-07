@@ -1,26 +1,33 @@
 import { HomeSlider } from "../components/ui/HomeSlider"
 import { useProducts } from "../hooks"
 import { ProductList } from '../components/products'
-import { Spinner } from "../components/ui"
+import { Categories, Spinner } from "../components/ui"
+import Head from "next/head"
 
 export default function Home() {
 
   const { products, isLoading } = useProducts('/products')
 
   return (
-    <div className="z-0">
-      <HomeSlider images={['https://res.cloudinary.com/df7nchfnh/image/upload/v1669732754/Ecommerce/banner2_hwfxdp.png', 'https://res.cloudinary.com/df7nchfnh/image/upload/v1669732758/Ecommerce/banner1_sma6nm.png']} />
-      {
-        isLoading
-          ? (
-            <div className="flex w-full">
-              <div className="m-auto mt-16 mb-16">
-                <Spinner />
+    <>
+      <Head>
+        <title>Inicio</title>
+      </Head>
+      <div className="z-0">
+        <HomeSlider />
+        <Categories />
+        {
+          isLoading
+            ? (
+              <div className="flex w-full">
+                <div className="m-auto mt-16 mb-16">
+                  <Spinner />
+                </div>
               </div>
-            </div>
-          )
-          : <ProductList products={ products } title='Más Vendidos' />
-      }
-    </div>
+            )
+            : <ProductList products={ products } title='Más Vendidos' />
+        }
+      </div>
+    </>
   )
 }

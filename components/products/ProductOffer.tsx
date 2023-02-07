@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ICartProduct, IProductsOffer } from '../../interfaces'
 import { NumberFormat } from '../../utils'
-import { Button2 } from '../ui'
+import { Button2AddToCart } from '../ui'
 
 interface Props {
   offer: IProductsOffer
@@ -51,20 +51,20 @@ export const ProductOffer: React.FC<Props> = ({ offer }) => {
       <div className='mt-auto mb-auto'>
         {
           offer.products.length === 1
-            ? <h3 className='text-lg'>{tempCartProduct.name}</h3>
-            : <select onChange={productChange} className='text-sm p-1 border rounded-md font-light mobile:text-base dark:border-neutral-500'>
+            ? <span>{tempCartProduct.name}</span>
+            : <select onChange={productChange} className='text-sm p-1 border rounded-md font-light dark:border-neutral-500'>
               {
                 offer.products.map(product => <option className='font-light' key={product.slug}>{product.name}</option>)
               }
             </select>
         }
         <div className='flex gap-2'>
-          <p>${NumberFormat(tempCartProduct.price)}</p>
-          <p className='text-sm line-through font-light'>${NumberFormat(tempCartProduct.beforePrice!)}</p>
+          <span>${NumberFormat(tempCartProduct.price)}</span>
+          <span className='text-sm line-through font-light'>${NumberFormat(tempCartProduct.beforePrice!)}</span>
         </div>
         {
           tempCartProduct.variation !== undefined
-            ? <select className='text-sm p-1 border rounded-md block mb-1 font-light mobile:text-base  dark:border-neutral-500' name={tempCartProduct.name} onChange={variationChange}>
+            ? <select className='text-sm p-1 border rounded-md block mb-1 font-light dark:border-neutral-500' name={tempCartProduct.name} onChange={variationChange}>
               {
                 offer.products.map(product => {
                   if (tempCartProduct.name === product.name) {
@@ -76,7 +76,7 @@ export const ProductOffer: React.FC<Props> = ({ offer }) => {
             </select>
             : ''
         }
-        <Button2>Añadir al carrito</Button2>
+        <Button2AddToCart tempCartProduct={tempCartProduct}>Añadir al carrito</Button2AddToCart>
       </div>
     </div>
   )

@@ -1,8 +1,11 @@
-import React from 'react'
-import { Slide } from 'react-slideshow-image'
-
-import styles from './css/ProductSlider.module.css'
-import 'react-slideshow-image/dist/styles.css'
+import React, { useState } from 'react'
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import "swiper/css/free-mode"
+import "swiper/css/navigation"
+import "swiper/css/thumbs"
+import styles from "./css/ProductSlider.module.css"
+import { Navigation, Pagination } from "swiper"
 
 interface Props {
   images: string[]
@@ -10,25 +13,26 @@ interface Props {
 
 export const ProductSlider: React.FC<Props> = ({ images }) => {
   return (
-    <Slide
-      easing='ease'
-      duration={7000}
-      indicators
-    >
-      {
-        images.map(image => {
-          return (
-            <div className={styles['each-slide']} key={ image }>
-              <div className='fadeIn' style={{
-                backgroundImage: `url(${ image })`,
-                backgroundSize: 'cover'
-              }}>
-
-              </div>
-            </div>
-          )
-        })
-      }
-    </Slide>
+    <>
+      <Swiper
+        className={styles.mySwiper}
+        slidesPerView={1}
+        loop={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination, Navigation]}
+      >
+        {
+          images.map(image => {
+            return (
+              <SwiperSlide key={ image }>
+                <img src={image} className='m-auto' />
+              </SwiperSlide>
+            )
+          })
+        }
+      </Swiper>
+    </>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ICartProduct, IProduct } from '../../interfaces'
 import { NumberFormat } from '../../utils'
-import { Button, ItemCounter } from '../ui'
+import { Button, ButtonAddToCart, ItemCounter } from '../ui'
 
 interface Props {
   product: IProduct,
@@ -26,10 +26,10 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
           <div className='mt-auto mb-auto'>
             <h3 className='text-lg'>{product.name}</h3>
             <div className='flex gap-1'>
-              <p>${NumberFormat(product.price)}</p>
+              <span>${NumberFormat(product.price)}</span>
               {
                 product.beforePrice
-                  ? <p className='line-through text-sm'>${NumberFormat(product.beforePrice)}</p>
+                  ? <span className='line-through text-sm'>${NumberFormat(product.beforePrice)}</span>
                   : ''
               }
             </div>
@@ -47,16 +47,14 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
               }
           </div>
         </div>
-        <div className='flex justify-around gap-2'>
-          <div className='mt-auto mb-auto'>
+        <div className='flex'>
+          <div className='flex m-auto justify-around gap-2 h-fit'>
             <ItemCounter
               currentValue={ tempCartProduct.quantity }
               updatedQuantity={ onUpdateQuantity }
               maxValue={ product.stock }
             />
-          </div>
-          <div className='mt-auto mb-auto'>
-            <Button>Añadir al carrito</Button>
+            <ButtonAddToCart tempCartProduct={tempCartProduct}>Añadir al Carrito</ButtonAddToCart>
           </div>
         </div>
       </div>
