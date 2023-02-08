@@ -5,19 +5,19 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import "swiper/css/pagination"
 import styles from "./css/HomeSlider.module.css"
-import { Pagination } from "swiper"
-
+import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper"
 
 export const HomeSlider = () => {
   return (
     <div>
       <Swiper
         className={styles.mySwiper}
-        slidesPerView={1}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
+        cssMode={true}
+        navigation={true}
+        pagination={true}
+        mousewheel={true}
+        keyboard={true}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
       >
         <SwiperSlide>
           <div className='h-400 flex bg-gradient-to-r from-cyan-500 to-blue-500 xl:h-600 2xl:h-700'>
