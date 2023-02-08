@@ -13,8 +13,10 @@ export const HomeSlider = () => {
       <Swiper
         className={styles.mySwiper}
         cssMode={true}
-        navigation={true}
-        pagination={true}
+        loop={true}
+        pagination={{
+          clickable: true
+        }}
         mousewheel={true}
         keyboard={true}
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
