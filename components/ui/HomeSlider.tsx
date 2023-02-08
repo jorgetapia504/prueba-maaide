@@ -17,7 +17,7 @@ export const HomeSlider = () => {
   }
 
   const handleTouchEnd = () => {
-    document.body.style.overflowY = 'hidden'
+    document.body.style.overflowY = 'scroll'
   }
 
   return (
