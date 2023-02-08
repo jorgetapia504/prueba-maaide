@@ -16,15 +16,12 @@ export const HomeSlider = () => {
     document.body.style.overflowY = 'hidden'
   }
 
-  const handleTouchMove = (event: any) => {
-    const deltaY = event.touches[0].clientY - event.touches[0].screenY;
-    if (Math.abs(deltaY) > 10) {
-      document.body.style.overflowY = 'scroll'
-    }
-  };
+  const handleTouchEnd = () => {
+    document.body.style.overflowY = 'hidden'
+  }
 
   return (
-    <div ref={sliderRef} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
+    <div ref={sliderRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       <Swiper
         className={styles.mySwiper}
         slidesPerView={1}
