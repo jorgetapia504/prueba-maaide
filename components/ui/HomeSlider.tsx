@@ -1,35 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button } from './Button'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import "swiper/css/pagination"
 import styles from "./css/HomeSlider.module.css"
-import { Pagination, Navigation } from "swiper"
-import { useRef } from 'react';
+import { Pagination } from "swiper"
+
 
 export const HomeSlider = () => {
-
-  const sliderRef = useRef(null)
-
-  const handleTouchStart = () => {
-    document.body.style.overflowY = 'hidden'
-  }
-
-  const handleTouchEnd = () => {
-    document.body.style.overflowY = 'scroll'
-  }
-
   return (
-    <div ref={sliderRef} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <div>
       <Swiper
         className={styles.mySwiper}
         slidesPerView={1}
-        loop={true}
         pagination={{
           clickable: true,
         }}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination]}
       >
         <SwiperSlide>
           <div className='h-400 flex bg-gradient-to-r from-cyan-500 to-blue-500 xl:h-600 2xl:h-700'>
