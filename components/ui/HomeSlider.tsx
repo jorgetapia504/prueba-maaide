@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from './Button'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -6,14 +6,21 @@ import "swiper/css"
 import "swiper/css/pagination"
 import styles from "./css/HomeSlider.module.css"
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper"
+import browser from 'browser-detect'
 
 export const HomeSlider = () => {
+
+  const [browserName, setBrowserName] = useState('')
+
+  useEffect(() => {
+    setBrowserName(browser().name!)
+  }, [])
+
   return (
     <div>
       <Swiper
         className={styles.mySwiper}
         cssMode={true}
-        loop={true}
         pagination={{
           clickable: true
         }}
@@ -27,6 +34,7 @@ export const HomeSlider = () => {
               <h1 className='text-5xl text-white font-bold mb-2'>ENCUÉNTRA OFERTAS DE HASTA UN 40% DE DESCUENTO</h1>
               <p className='font-light text-white text-lg mb-4'>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
               <Link href='/ofertas'><Button>Ver ofertas</Button></Link>
+              <p>{browserName}</p>
             </div>
           </div>
         </SwiperSlide>
