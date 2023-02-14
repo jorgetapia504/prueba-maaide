@@ -71,10 +71,10 @@ const CheckOut = () => {
                     </div>
                   </div>
                   <div className='flex gap-2 mt-auto mb-auto'>
-                    <span>${NumberFormat(product.price)}</span>
+                    <span>${NumberFormat(product.price * product.quantity)}</span>
                     {
                       product.beforePrice
-                        ? <span className='font-light text-sm line-through'>${NumberFormat(product.beforePrice)}</span>
+                        ? <span className='font-light text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
                         : ''
                     }
                   </div>
@@ -92,7 +92,7 @@ const CheckOut = () => {
           <div className='mt-2 mb-2 pb-2 border-b dark:border-neutral-700'>
             <div className='flex gap-2 justify-between mb-1'>
               <span className='font-light'>Subtotal</span>
-              <span>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price, 0))}</span>
+              <span>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
             </div>
             <div className='flex gap-2 justify-between'>
               <span className='font-light'>Envío</span>
@@ -102,7 +102,7 @@ const CheckOut = () => {
         </div>
         <div className='flex gap-2 justify-between mb-2'>
           <span className='text-lg'>Total</span>
-          <span className='text-lg'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price, 0) + Number(sell.shipping))}</span>
+          <span className='text-lg'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
         </div>
         <button className='font-light flex gap-2' onClick={() => details === 'hidden' ? setDetails('block') : setDetails('hidden')}>{details === 'hidden' ? <AiOutlineDown className='mt-auto mb-auto' /> : <AiOutlineUp className='mt-auto mb-auto' /> } {details === 'hidden' ? 'Mostrar' : 'Ocultar'} resumen del pedido</button>
       </div>
