@@ -17,8 +17,10 @@ export const ButtonAddToCart: React.FC<Props> = ({ tempCartProduct }) => {
       const cart = JSON.parse(localStorage.getItem('cart')!)
       const cartFinal = cart.concat(tempCartProduct)
       localStorage.setItem('cart', JSON.stringify(cartFinal))
+      setCart(localStorage.getItem('cart'))
     } else {
       localStorage.setItem('cart', `[${JSON.stringify(tempCartProduct)}]`)
+      setCart(localStorage.getItem('cart'))
     }
     setTimeout(() => {
       setText('Añadir al carrito')
