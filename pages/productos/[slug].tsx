@@ -137,9 +137,9 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               {
                 product.variations
                   ? tempCartProduct.variation
-                    ? <ButtonAddToCart tempCartProduct={tempCartProduct}>Añadir al Carrito</ButtonAddToCart>
+                    ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
                     : <ButtonNone>Añadir al Carrito</ButtonNone>
-                  : <ButtonAddToCart tempCartProduct={tempCartProduct}>Añadir al Carrito</ButtonAddToCart>
+                  : <ButtonAddToCart tempCartProduct={tempCartProduct} />
               }
             </div>
             <div className='border-b pb-4 mt-4 dark:border-neutral-800'>

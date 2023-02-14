@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import CartContext from '../../context/cart/CartContext'
 import { ICartProduct } from '../../interfaces'
 
@@ -6,7 +6,7 @@ interface Props {
   tempCartProduct: ICartProduct
 }
 
-export const ButtonAddToCart: React.FC<PropsWithChildren<Props>> = ({ children, tempCartProduct }) => {
+export const ButtonAddToCart: React.FC<Props> = ({ tempCartProduct }) => {
 
   const {setCart} = useContext(CartContext)
   const [text, setText] = useState('Añadir al carrito')
