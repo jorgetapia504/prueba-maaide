@@ -210,18 +210,19 @@ const CheckOut = () => {
                         <img className='w-20 border rounded-md' src={product.image} />
                         <div className='mt-auto mb-auto'>
                           <span className='block'>{product.name}</span>
+                          <span className='block font-light'>Cantidad: {product.quantity}</span>
                           {
                             product.variation
-                              ? <span className='font-light'>{product.variation.variation}</span>
+                              ? <span className='block font-light'>Variación: {product.variation.variation}</span>
                               : ''
                           }
                         </div>
                       </div>
                       <div className='flex gap-2 mt-auto mb-auto'>
-                        <span>${NumberFormat(product.price)}</span>
+                        <span>${NumberFormat(product.price * product.quantity)}</span>
                         {
                           product.beforePrice
-                            ? <span className='font-light text-sm line-through'>${NumberFormat(product.beforePrice)}</span>
+                            ? <span className='font-light text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
                             : ''
                         }
                       </div>
@@ -240,7 +241,7 @@ const CheckOut = () => {
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
               <div className='flex gap-2 justify-between mb-1'>
                 <span className='font-light'>Subtotal</span>
-                <span>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price, 0))}</span>
+                <span>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
               </div>
               <div className='flex gap-2 justify-between'>
                 <span className='font-light'>Envío</span>
@@ -249,7 +250,7 @@ const CheckOut = () => {
             </div>
             <div className='flex gap-2 justify-between'>
               <span className='text-lg'>Total</span>
-              <span className='text-lg'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price, 0) + Number(sell.shipping))}</span>
+              <span className='text-lg'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
             </div>
           </div>
         </form>

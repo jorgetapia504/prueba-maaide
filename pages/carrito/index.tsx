@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ProductList, ShippingCart } from '../../components/products'
 import { Button, Spinner } from '../../components/ui'
 import { useProducts } from '../../hooks'
@@ -9,8 +9,12 @@ import { NumberFormat } from '../../utils'
 
 const CartPage = () => {
 
-  const [cart, setCart] = useState<ICartProduct[]>(typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('cart')!) : [])
+  const [cart, setCart] = useState<ICartProduct[]>()
   const [shippingCost, setShippingCost] = useState(0)
+
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem('cart')!))
+  }, [])
 
   const { products, isLoading } = useProducts('/products')
 
@@ -25,7 +29,7 @@ const CartPage = () => {
           <div className='block gap-8 1010:flex'>
             <div className='w-full 1010:w-7/12'>
               {
-                cart.map(product => (
+                cart?.map(product => (
                   <div className='flex gap-2 mb-2 justify-between' key={product._id}>
                     <div className='flex gap-2'>
                       <img className='w-28 rounded-md 450:w-32' src={product.image} />
@@ -87,7 +91,11 @@ const CartPage = () => {
                   </div>
                   <div className='flex gap-2 justify-between mb-1'>
                     <span className='font-light'>Subtotal</span>
-                    <span>${NumberFormat(cart.reduce((bef, curr) => bef + curr.price, 0))}</span>
+                    {
+                      cart?.length
+                        ? <span>${NumberFormat(cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
+                        : ''
+                    }
                   </div>
                   <div className='flex gap-2 justify-between'>
                     <span className='font-light'>Envío</span>
@@ -96,7 +104,11 @@ const CartPage = () => {
                 </div>
                 <div className='flex gap-2 justify-between'>
                   <span className='text-lg'>Total</span>
-                  <span className='text-lg'>${NumberFormat(cart.reduce((bef, curr) => bef + curr.price, 0) + Number(shippingCost))}</span>
+                  {
+                    cart?.length
+                      ? <span className='text-lg'>${NumberFormat(cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
+                      : ''
+                  }
                 </div>
               </div>
               <div className='mt-8 ml-auto w-full flex'>
