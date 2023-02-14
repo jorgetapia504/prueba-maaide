@@ -69,6 +69,7 @@ export const NavbarCart: React.FC<Props> = ({ setExitCart, setCartView }) => {
                     </div>
                   </div>
                   <button onClick={() => {
+                    setCartView('flex')
                     const cartProduct = JSON.parse(localStorage.getItem('cart')!)
                     const products = cartProduct.filter((item: ICartProduct) => item.name !== product.name)
                     localStorage.setItem('cart', JSON.stringify(products))
