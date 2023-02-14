@@ -76,7 +76,7 @@ export const ProductOffer: React.FC<Props> = ({ offer }) => {
             </select>
             : ''
         }
-        <Button2AddToCart tempCartProduct={tempCartProduct}>Añadir al carrito</Button2AddToCart>
+        <Button2AddToCart tempCartProduct={tempCartProduct} />
       </div>
     </div>
   )

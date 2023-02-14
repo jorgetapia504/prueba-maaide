@@ -74,7 +74,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         {
           product.variations
             ? <button className='pt-1.5 pb-1.5 text-sm rounded-md bg-main text-white pl-6 pr-6 450:pl-8 450:pr-8'><Link href={`/productos/${product.slug}`}>Ver variantes</Link></button>
-            : <Button2AddToCart tempCartProduct={tempCartProduct}>Añadir al Carrito</Button2AddToCart>
+            : <Button2AddToCart tempCartProduct={tempCartProduct} />
         }
       </div>
     </div>

@@ -54,7 +54,7 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
               updatedQuantity={ onUpdateQuantity }
               maxValue={ product.stock }
             />
-            <ButtonAddToCart tempCartProduct={tempCartProduct}>Añadir al Carrito</ButtonAddToCart>
+            <ButtonAddToCart tempCartProduct={tempCartProduct} />
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ interface Props {
   tempCartProduct: ICartProduct
 }
 
-export const Button2AddToCart: React.FC<PropsWithChildren<Props>> = ({ children, tempCartProduct }) => {
+export const Button2AddToCart: React.FC<Props> = ({ tempCartProduct }) => {
 
   const {setCart} = useContext(CartContext)
   const [text, setText] = useState('Añadir al carrito')
