@@ -71,10 +71,10 @@ const ProductPage: React.FC<Props> = ({ product }) => {
       <div className='flex p-4'>
         <div className='block m-auto w-full gap-4 lg:flex xl2:w-1280 xl2:gap-8'>
           <div className='w-full lg:w-1/2'>
-            <div className='mb-4'>
+            <div className='mb-2'>
               <span className='text-15 font-light'><Link href='/tienda'>Tienda</Link> / <Link href={`/category/${ product.category }`}>{ product.category[0].toUpperCase() }{ product.category.substring(1) }</Link> / <Link href={`/product/${ product.slug }`}>{ product.name }</Link></span>
             </div>
-            <div className='sticky top-32 mb-0 1010:mb-10'>
+            <div className='sticky top-32 mb-2 1010:mb-10'>
               <ProductSlider images={ product.images } />
             </div>
           </div>

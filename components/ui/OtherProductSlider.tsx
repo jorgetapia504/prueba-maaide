@@ -13,7 +13,7 @@ interface Props {
 
 export const OtherProductSlider: React.FC<Props> = ({ images }) => {
   return (
-    <div className='mb-2'>
+    <>
       <Swiper
         className={styles.mySwiper}
         slidesPerView={1}
@@ -33,6 +33,6 @@ export const OtherProductSlider: React.FC<Props> = ({ images }) => {
           })
         }
       </Swiper>
-    </div>
+    </>
   )
 }
