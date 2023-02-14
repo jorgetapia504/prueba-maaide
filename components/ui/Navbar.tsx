@@ -22,7 +22,6 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const { systemTheme, theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [cartView, setCartView] = useState('hidden')
-  const [exitCart, setExitCart] = useState(false)
   const router = useRouter()
   const {cart} = useContext(CartContext)
 
@@ -148,11 +147,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               </div>
           }
         </div>
-        <div onClick={() => exitCart === true ? '' : setCartView('hidden')} className={`${cartView} w-full z-50 absolute top-60`} style={{ height: 'calc(100vh - 91px)' }}>
-          <div className='w-1440 flex ml-auto mr-auto'>
+        <div className={`${cartView} w-full z-50 absolute top-60`} style={{ height: 'calc(100vh - 91px)' }}>
+          <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
-              <NavbarCart setExitCart={setExitCart} setCartView={setCartView} />
+              <NavbarCart setCartView={setCartView} />
             </div>
+            <div onClick={() => setCartView('hidden')} className='h-full w-full' />
           </div>
         </div>
         <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '60px', height: 'calc(100vh - 60px)' }}>

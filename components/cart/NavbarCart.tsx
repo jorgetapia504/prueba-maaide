@@ -6,16 +6,15 @@ import { IoCloseOutline } from 'react-icons/io5'
 import CartContext from '../../context/cart/CartContext';
 
 interface Props {
-  setExitCart: any
   setCartView: any
 }
 
-export const NavbarCart: React.FC<Props> = ({ setExitCart, setCartView }) => {
+export const NavbarCart: React.FC<Props> = ({ setCartView }) => {
 
   const {cart, setCart} = useContext(CartContext)
 
   return (
-    <div onMouseEnter={() => setExitCart(true)} onMouseLeave={() => setExitCart(false)} className='ml-auto p-4 rounded-md shadow-md bg-white z-40 w-full dark:bg-neutral-900 dark:border dark:border-neutral-800 400:w-96'>
+    <div className='ml-auto p-4 rounded-md shadow-md bg-white z-40 w-full dark:bg-neutral-900 dark:border dark:border-neutral-800 400:w-96'>
       <h4 className='text-center mb-3 text-xl pb-2 border-b w-full dark:border-neutral-800'>Carrito</h4>
       {
         cart?.length
@@ -69,7 +68,6 @@ export const NavbarCart: React.FC<Props> = ({ setExitCart, setCartView }) => {
                     </div>
                   </div>
                   <button onClick={() => {
-                    setCartView('flex')
                     const cartProduct = JSON.parse(localStorage.getItem('cart')!)
                     const products = cartProduct.filter((item: ICartProduct) => item.name !== product.name)
                     localStorage.setItem('cart', JSON.stringify(products))
