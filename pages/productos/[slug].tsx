@@ -74,7 +74,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
             <div className='mb-2'>
               <span className='text-15 font-light'><Link href='/tienda'>Tienda</Link> / <Link href={`/category/${ product.category }`}>{ product.category[0].toUpperCase() }{ product.category.substring(1) }</Link> / <Link href={`/product/${ product.slug }`}>{ product.name }</Link></span>
             </div>
-            <div className='relative top-0 mb-2 1010:mb-10 1010:sticky 1010:top-32'>
+            <div className='relative top-0 mb-0 1010:mb-10 1010:sticky 1010:top-32'>
               <ProductSlider images={ product.images } />
             </div>
           </div>
