@@ -21,12 +21,12 @@ const ContactPage = () => {
         <title>Contacto</title>
       </Head>
       <div className='flex p-4'>
-        <div className='m-auto w-1280 block gap-16 mt-16 mb-16 1010:flex'>
+        <div className='m-auto w-1280 block gap-16 1010:flex'>
           <div className='w-full m-auto mb-10 1010:w-1/2 1010:mb-auto'>
-            <h1 className='text-5xl mb-2'>Contacto</h1>
+            <h1 className='text-5xl mb-2 mt-6 1010:mt-0'>Contacto</h1>
             <p className='font-light'>Para cualquier pregunta o consulta que tengas, no dudes en ponerte en contacto con nosotros a traves del siguiente formulario, desde el chat del sitio web o desde nuestras redes sociales.</p>
           </div>
-          <div className='w-full m-auto 650:w-560 1010:w-1/2'>
+          <div className='w-full m-auto mt-6 mb-6 650:w-560 1010:w-1/2'>
             <div className='rounded-md shadow-2xl p-4 420:p-6 650:p-10'>
               <h2 className='text-2xl mb-4'>Para ponerte en contacto con nosotros llena el siguiente formulario</h2>
               <form>

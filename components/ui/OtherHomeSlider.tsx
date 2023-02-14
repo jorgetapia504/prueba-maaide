@@ -19,7 +19,7 @@ export const OtherHomeSlider = () => {
       modules={[Pagination, Navigation]}
     >
       <SwiperSlide>
-        <div className='h-400 flex bg-gradient-to-r from-cyan-500 to-blue-500 xl:h-600 2xl:h-700'>
+        <div className='h-400 flex bg-gradient-to-r p-4 from-cyan-500 to-blue-500 xl:h-600 2xl:h-700'>
           <div className='w-1280 m-auto'>
             <h1 className='text-5xl text-white font-bold mb-2'>ENCUÉNTRA OFERTAS DE HASTA UN 40% DE DESCUENTO</h1>
             <p className='font-light text-white text-lg mb-4'>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
@@ -28,7 +28,7 @@ export const OtherHomeSlider = () => {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='h-400 flex bg-gradient-to-r from-cyan-500 to-blue-500 xl:h-600 2xl:h-700'>
+        <div className='h-400 flex bg-gradient-to-r p-4 from-cyan-500 to-blue-500 xl:h-600 2xl:h-700'>
           <div className='w-1280 m-auto'>
             <h1 className='text-5xl text-white font-bold mb-2'>ENCUÉNTRA OFERTAS DE HASTA UN 40% DE DESCUENTO</h1>
             <p className='font-light text-white text-lg mb-4'>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>

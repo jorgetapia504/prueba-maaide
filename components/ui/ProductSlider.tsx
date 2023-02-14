@@ -1,38 +1,26 @@
-import React, { useState } from 'react'
-import { Swiper, SwiperSlide } from "swiper/react"
-import "swiper/css"
-import "swiper/css/free-mode"
-import "swiper/css/navigation"
-import "swiper/css/thumbs"
-import styles from "./css/ProductSlider.module.css"
-import { Navigation, Pagination } from "swiper"
+import React, { useEffect, useState } from 'react'
+import browser from 'browser-detect'
+import { OtherProductSlider, SafariProductSlider } from './'
 
 interface Props {
   images: string[]
 }
 
 export const ProductSlider: React.FC<Props> = ({ images }) => {
+
+  const [browserName, setBrowserName] = useState('')
+
+  useEffect(() => {
+    setBrowserName(browser().name!)
+  }, [])
+
   return (
-    <>
-      <Swiper
-        className={styles.mySwiper}
-        slidesPerView={1}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination, Navigation]}
-      >
-        {
-          images.map(image => {
-            return (
-              <SwiperSlide key={ image }>
-                <img src={image} className='m-auto' />
-              </SwiperSlide>
-            )
-          })
-        }
-      </Swiper>
-    </>
+    <div>
+      {
+        browserName === 'safari'
+          ? <SafariProductSlider images={images} />
+          : <OtherProductSlider images={images} />
+      }
+    </div>
   )
 }

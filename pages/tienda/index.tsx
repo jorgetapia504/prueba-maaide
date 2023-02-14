@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { useProducts } from '../../hooks'
 import { Spinner } from '../../components/ui'
-import { ProductList } from '../../components/products'
+import { ProductCard } from '../../components/products'
 
 const Shop = () => {
 
@@ -28,7 +28,15 @@ const Shop = () => {
               </div>
             </div>
           )
-          : <ProductList products={ products } title='Más Vendidos' />
+          : <div className='flex'>
+            <div className='w-1280 m-auto flex gap-2 flex-wrap'>
+              {
+                products.map(product => (
+                  <ProductCard key={product._id} product={product} />
+                ))
+              }
+            </div>
+          </div>
       }
     </>
   )
