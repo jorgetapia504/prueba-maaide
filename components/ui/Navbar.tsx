@@ -90,7 +90,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           {
                             cart?.length
                               ? (
-                                <div className='bg-main w-5 h-5 absolute top-2 ml-4 flex rounded-full'>
+                                <div className='bg-main w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
                                 <span className='m-auto text-xs font-light text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
                               </div>
                               )
@@ -112,7 +112,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           {
                             cart?.length
                               ? (
-                                <div className='bg-main w-5 h-5 absolute top-2 ml-4 flex rounded-full'>
+                                <div className='bg-main w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
                                 <span className='m-auto text-xs font-light text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
                               </div>
                               )
