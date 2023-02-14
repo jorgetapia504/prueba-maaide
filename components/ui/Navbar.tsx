@@ -86,7 +86,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     cartView === 'hidden'
                       ? (
                         <div>
-                          <BsBag className='m-auto text-xl ml-1 cursor-pointer h-full' onClick={() => setCartView('flex')} />
+                          <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => setCartView('flex')} />
                           {
                             cart?.length
                               ? (
@@ -98,7 +98,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           }
                         </div>
                         )
-                      : <IoCloseOutline className='m-auto text-xl ml-1 cursor-pointer h-full' onClick={() => setCartView('hidden')} />
+                      : <IoCloseOutline className='m-auto text-xl cursor-pointer h-full' onClick={() => setCartView('hidden')} />
                   }
                   {renderThemeChanger()}
                 </div>
@@ -108,7 +108,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     cartView === 'hidden'
                       ? (
                         <div>
-                          <BsBag className='m-auto text-xl ml-1 cursor-pointer h-full' onClick={() => setCartView('flex')} />
+                          <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => setCartView('flex')} />
                           {
                             cart?.length
                               ? (
@@ -120,7 +120,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           }
                         </div>
                         )
-                      : <IoCloseOutline className='m-auto text-xl ml-1 cursor-pointer h-full' onClick={() => setCartView('hidden')} />
+                      : <IoCloseOutline className='m-auto text-xl cursor-pointer h-full' onClick={() => setCartView('hidden')} />
                   }
                   {renderThemeChanger()}
                   {
