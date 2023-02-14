@@ -32,6 +32,7 @@ export const SafariProductList: React.FC<Props> = ({ products, title }) => {
             products.map(product => (
               <SwiperSlide className='m-auto' key={product._id}>
                 <ProductCard product={ product } />
+                <div className='h-8' />
               </SwiperSlide>
             ))
           }

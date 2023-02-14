@@ -7,7 +7,7 @@ const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [cart, setCart] = useState<ICartProduct[]>()
 
   useEffect(() => {
-    setCart(typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('cart')!) : [])
+    setCart(JSON.parse(localStorage.getItem('cart')!))
   }, [])
 
   return (
