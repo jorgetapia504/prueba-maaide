@@ -84,9 +84,9 @@ const CartPage = () => {
               }
             </div>
             <div className='w-full 1010:w-5/12'>
-              <div className='bg-gray-50 p-4 rounded-md shadow-md 450:p-6'>
+              <div className='bg-gray-50 p-4 rounded-md shadow-md 450:p-6 dark:bg-neutral-800 dark:border dark:border-neutral-700'>
                 <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
-                  <div className='mb-4 border-b pb-4'>
+                  <div className='mb-4 border-b pb-4 dark:border-neutral-700'>
                     <ShippingCart setShippingCost={setShippingCost} />
                   </div>
                   <div className='flex gap-2 justify-between mb-1'>

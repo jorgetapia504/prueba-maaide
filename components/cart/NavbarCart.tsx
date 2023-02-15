@@ -22,7 +22,7 @@ export const NavbarCart: React.FC<Props> = ({ setCartView }) => {
             {
               cart.map((product: ICartProduct) => (
                 <div key={product.slug} className='flex gap-1 justify-between mb-2'>
-                  <div className='flex gap-1'>
+                  <div className='flex gap-2'>
                     <Link href={`/productos/${product.slug}`} onClick={() => setCartView('hidden')}>
                       <img src={product.image} className='w-24 h-24 mt-auto mb-auto' />
                     </Link>

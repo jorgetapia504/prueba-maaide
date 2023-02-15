@@ -27,12 +27,12 @@ const ContactPage = () => {
             <p className='font-light'>Para cualquier pregunta o consulta que tengas, no dudes en ponerte en contacto con nosotros a traves del siguiente formulario, desde el chat del sitio web o desde nuestras redes sociales.</p>
           </div>
           <div className='w-full m-auto mt-6 mb-6 650:w-560 1010:w-1/2'>
-            <div className='rounded-md shadow-2xl p-4 420:p-6 650:p-10'>
+            <div className='rounded-md shadow-2xl p-4 420:p-6 650:p-10 dark:shadow-none dark:border dark:border-neutral-700 dark:bg-neutral-800'>
               <h2 className='text-2xl mb-4'>Para ponerte en contacto con nosotros llena el siguiente formulario</h2>
               <form>
-                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='p-2 text-sm font-light w-full rounded border mb-3' />
-                <input type='email' placeholder='Email' name='email' onChange={inputChange} className='p-2 text-sm font-light w-full rounded border mb-3' />
-                <textarea placeholder='Mensaje' name='message' onChange={inputChange} className='p-2 font-light text-sm w-full rounded border h-20' />
+                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='p-2 text-sm font-light w-full rounded border mb-3 dark:border-neutral-600' />
+                <input type='email' placeholder='Email' name='email' onChange={inputChange} className='p-2 text-sm font-light w-full rounded border mb-3 dark:border-neutral-600' />
+                <textarea placeholder='Mensaje' name='message' onChange={inputChange} className='p-2 font-light text-sm w-full rounded border h-20 dark:border-neutral-600' />
                 <input type='file' className='font-light text-sm mt-2 mb-4 block w-full' />
                 <button onClick={(e) => {
                   e.preventDefault()
