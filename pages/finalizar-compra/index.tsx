@@ -52,7 +52,7 @@ const CheckOut = () => {
       <Head>
         <title>Finalizar compra</title>
       </Head>
-      <div className='sticky top-14 bg-gray-50 w-full p-4 shadow-md block 1010:hidden'>
+      <div className='sticky top-14 bg-gray-50 w-full p-4 shadow-md block 1010:hidden dark:bg-neutral-800 dark:border dark:border-neutral-700'>
         <div className={`mb-2 ${details}`}>
           <h2 className='text-lg mb-2 font-light'>Carrito</h2>
           {

@@ -163,24 +163,24 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }, 100)
           }} />
           <div className={`${menu} transition-all duration-200 shadow-md bg-white overflow-hidden dark:border dark:border-neutral-800 dark:bg-neutral-900`}>
-            <Link className={`mb-4 font-light flex pb-2 border-b`} onClick={() => {
+            <Link className={`mb-4 font-light flex pb-2 border-b dark:border-neutral-600`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
               }, 100)
-            }} href='/'>Inicio<AiOutlineRight className='ml-auto text-lg' /></Link>
-            <Link className={`mb-4 font-light flex pb-2 border-b`} onClick={() => {
+            }} href='/'>Inicio<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
+            <Link className={`mb-4 font-light flex pb-2 border-b dark:border-neutral-600`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
               }, 100)
-            }} href='/tienda'>Tienda<AiOutlineRight className='ml-auto text-lg' /></Link>
-            <Link className={`mb-4 font-light flex pb-2 border-b`} onClick={() => {
+            }} href='/tienda'>Tienda<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
+            <Link className={`mb-4 font-light flex pb-2 border-b dark:border-neutral-600`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
               }, 100)
-            }} href='/contacto'>Contacto<AiOutlineRight className='ml-auto text-lg' /></Link>
+            }} href='/contacto'>Contacto<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
         </div>
       </div>

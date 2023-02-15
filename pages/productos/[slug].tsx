@@ -118,7 +118,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
             <span className='mb-2 font-light text-sm block'>Stock: { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</span>
             {
               product.variations
-                ? <select onChange={selectVariation} className='border p-1 rounded-md font-light mb-2'>
+                ? <select onChange={selectVariation} className='border p-1 rounded-md font-light mb-2 dark:border-neutral-600'>
                   <option>Seleccionar variación</option>
                   {
                     product.variations?.map(variation => (
