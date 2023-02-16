@@ -72,7 +72,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
   return (
     <div>
       <h2 className='text-xl mb-2 font-light'>Calcula los costos de envío</h2>
-      <select className='text-sm border p-1 rounded-md font-light dark:border-neutral-500' onChange={regionChange}>
+      <select className='text-sm border p-1 rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={regionChange}>
         <option className='font-light'>Seleccionar Región</option>
         {
         regions !== undefined
@@ -82,7 +82,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
       </select>
       {
         citys !== undefined
-        ? <select className='text-sm block border p-1 rounded-md mt-2 font-light dark:border-neutral-500' onChange={cityChange}>
+        ? <select className='text-sm block border p-1 rounded-md mt-2 font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={cityChange}>
           <option className='font-light'>Seleccionar Ciudad</option>
           {citys.map(city => <option className='font-light' key={city.countyCode}>{city.countyName}</option>)}
         </select>

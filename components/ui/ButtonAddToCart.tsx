@@ -15,9 +15,16 @@ export const ButtonAddToCart: React.FC<Props> = ({ tempCartProduct }) => {
     setText('Producto añadido')
     if (localStorage.getItem('cart')) {
       const cart = JSON.parse(localStorage.getItem('cart')!)
-      const cartFinal = cart.concat(tempCartProduct)
-      localStorage.setItem('cart', JSON.stringify(cartFinal))
-      setCart(JSON.parse(localStorage.getItem('cart')!))
+      if (cart.find((product: ICartProduct) => product.name === tempCartProduct.name)) {
+        const productIndex = cart.findIndex((product: ICartProduct) => product.name === tempCartProduct.name)
+        cart[productIndex].quantity = tempCartProduct.quantity + cart[productIndex].quantity
+        localStorage.setItem('cart', JSON.stringify(cart))
+        setCart(JSON.parse(localStorage.getItem('cart')!))
+      } else {
+        const cartFinal = cart.concat(tempCartProduct)
+        localStorage.setItem('cart', JSON.stringify(cartFinal))
+        setCart(JSON.parse(localStorage.getItem('cart')!))
+      }
     } else {
       localStorage.setItem('cart', `[${JSON.stringify(tempCartProduct)}]`)
       setCart(JSON.parse(localStorage.getItem('cart')!))

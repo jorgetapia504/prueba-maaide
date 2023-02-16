@@ -85,7 +85,7 @@ const CheckOut = () => {
           <div className='pb-3 border-b dark:border-neutral-700'>
             <h2 className='mb-2 text-lg font-light'>Cupon de descuento</h2>
             <div className='flex gap-2'>
-              <input type='text' placeholder='Cupon' className='border p-1 rounded font-light w-72 dark:border-neutral-600' />
+              <input type='text' placeholder='Cupon' className='border p-1 rounded font-light w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <Button2>Agregar</Button2>
             </div>
           </div>
@@ -112,7 +112,7 @@ const CheckOut = () => {
             <h1 className='text-3xl mb-6 font-light'>Finalizar compra</h1>
             <div className='mb-6'>
               <h2 className='text-lg mb-2 font-light'>Información de contacto</h2>
-              <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded font-light w-full text-sm dark:border-neutral-600' />
+              <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded font-light w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <input type='checkbox' />
                 <span className='font-light text-sm'>Suscribirse a nuestra lista de emails</span>
@@ -122,14 +122,14 @@ const CheckOut = () => {
               <h2 className='text-lg mb-2 font-light'>Dirección de envío</h2>
               <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
               <div className='flex gap-2 mb-2'>
-                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full dark:border-neutral-600' />
-                <input type='text' placeholder='Apellido' name='lastName' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full dark:border-neutral-600' />
+                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Apellido' name='lastName' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               </div>
-              <input type='text' placeholder='Dirección' name='address' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full mb-2 dark:border-neutral-600' />
-              <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full mb-2 dark:border-neutral-600' />
+              <input type='text' placeholder='Dirección' name='address' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <span className='mt-auto mb-auto text-sm font-light'>+56</span>
-                <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full dark:border-neutral-600' />
+                <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               </div>
             </div>
             {
@@ -234,7 +234,7 @@ const CheckOut = () => {
             <div className='mb-2 pb-3 border-b dark:border-neutral-700'>
               <h2 className='mb-2 text-lg font-light'>Cupon de descuento</h2>
               <div className='flex gap-2'>
-                <input type='text' placeholder='Cupon' className='border p-1 rounded font-light w-72 dark:border-neutral-600' />
+                <input type='text' placeholder='Cupon' className='border p-1 rounded font-light w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 <Button2>Agregar</Button2>
               </div>
             </div>

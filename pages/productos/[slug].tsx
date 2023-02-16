@@ -4,7 +4,7 @@ import { ICartProduct, IProduct } from '../../interfaces'
 import { dbProducts } from '../../database'
 import { ButtonAddToCart, ButtonNone, ItemCounter, ProductSlider, Spinner } from '../../components/ui'
 import { NumberFormat } from '../../utils'
-import { NoReviews, ProductDetails, ProductList, ProductOffer, Reviews, ShippingCost } from '../../components/products'
+import { NoReviews, ProductDetails, ProductOffer, RecomendedProducts, Reviews, ShippingCost } from '../../components/products'
 import { ReviewsProduct, NoReviewsProduct } from '../../components/products/ReviewsProduct'
 import { useProducts } from '../../hooks'
 import Link from 'next/link'
@@ -184,7 +184,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               </div>
             </div>
           )
-          : <ProductList products={ products } title='Productos recomendados' />
+          : <RecomendedProducts products={ products } title='Productos recomendados' />
       }
     </>
   )

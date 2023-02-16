@@ -1,6 +1,6 @@
 import { db } from "."
-import { IProduct } from "../interfaces"
-import { Product } from '../models'
+import { ICategory, IProduct } from "../interfaces"
+import { Product, Category } from '../models'
 
 export const getProductBySlug = async ( slug: string ): Promise<IProduct | null> => {
   await db.dbConnect()
@@ -61,4 +61,26 @@ export const getAllProducts = async (): Promise<IProduct[]> => {
   })
 
   return JSON.parse( JSON.stringify( updatedProducts ) )
+}
+
+interface CategorySlug {
+  slug: string
+}
+
+export const getAllcategoriesSlug = async (): Promise<CategorySlug[]> => {
+  await db.dbConnect()
+  const slugs = await Category.find().select('slug -_id').lean()
+
+  return slugs
+}
+
+export const getCategoriesBySlug = async (slug: string): Promise<ICategory | null> => {
+  await db.dbConnect()
+  const category = await Category.findOne({ slug }).lean()
+
+  if ( !category ) {
+    return null
+  }
+
+  return JSON.parse( JSON.stringify( category ) )
 }

@@ -15,8 +15,8 @@ const Shop = () => {
       </Head>
       <div className='bg-gradient-to-r from-sky-500 pt-20 pb-20 to-indigo-500 flex pl-4 pr-4'>
         <div className='w-1280 m-auto'>
-          <h1 className='text-5xl text-white mb-4'>Tienda</h1>
-          <p className='font-light text-lg text-white w-full 580:w-1/2'>Encuentra los productos de la más alta calidad y siempre con increíbles precios.</p>
+          <h1 className='text-5xl text-white mb-4 text-center'>Tienda</h1>
+          <p className='font-light text-lg text-white w-full text-center'>Encuentra los productos de la más alta calidad y siempre con increíbles precios.</p>
         </div>
       </div>
       {
@@ -29,7 +29,7 @@ const Shop = () => {
             </div>
           )
           : <div className='flex'>
-            <div className='w-1280 m-auto flex gap-2 flex-wrap'>
+            <div className='w-1280 m-auto flex gap-2 pt-4 pb-4 flex-wrap'>
               {
                 products.map(product => (
                   <ProductCard key={product._id} product={product} />

@@ -52,7 +52,7 @@ export const ProductOffer: React.FC<Props> = ({ offer }) => {
         {
           offer.products.length === 1
             ? <span>{tempCartProduct.name}</span>
-            : <select onChange={productChange} className='text-sm p-1 border rounded-md font-light dark:border-neutral-500'>
+            : <select onChange={productChange} className='text-sm p-1 border rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500'>
               {
                 offer.products.map(product => <option className='font-light' key={product.slug}>{product.name}</option>)
               }
@@ -64,7 +64,7 @@ export const ProductOffer: React.FC<Props> = ({ offer }) => {
         </div>
         {
           tempCartProduct.variation !== undefined
-            ? <select className='text-sm p-1 border rounded-md block mb-1 font-light dark:border-neutral-500' name={tempCartProduct.name} onChange={variationChange}>
+            ? <select className='text-sm p-1 border rounded-md block mb-1 font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' name={tempCartProduct.name} onChange={variationChange}>
               {
                 offer.products.map(product => {
                   if (tempCartProduct.name === product.name) {
