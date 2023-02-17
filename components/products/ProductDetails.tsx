@@ -35,7 +35,7 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
             </div>
             {
               product.variations
-                ? <select className='border p-1 rounded-md font-light'>
+                ? <select className='border p-1 rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main'>
                   <option>Seleccionar vartiación</option>
                   {
                     product.variations.map(variation => (
