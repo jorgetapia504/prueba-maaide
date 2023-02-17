@@ -7,7 +7,7 @@ export const useCategories = ( url: string, config: SWRConfiguration = {} ) => {
 
   return {
     categories: data || [],
-    isLoading: !error && !data,
+    isLoadingCategories: !error && !data,
     isError: error
   }
 

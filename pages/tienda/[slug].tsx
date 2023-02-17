@@ -1,11 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ProductCard } from '../../components/products'
 import { Spinner } from '../../components/ui'
 import { dbProducts } from '../../database'
 import { useProducts } from '../../hooks'
-import { ICategory, IProduct } from '../../interfaces'
+import { ICategory } from '../../interfaces'
+import { IProduct } from '../../interfaces'
 
 interface Props {
   category: ICategory
@@ -13,9 +14,18 @@ interface Props {
 
 const CategoryPage: React.FC<Props> = ({ category }) => {
 
-  const [prod, setProd] = useState<IProduct[]>()
+  const [filterProducts, setFilterProducts] = useState<IProduct[]>([])
 
-  const { products, isLoading } = useProducts('/products')
+  const { products, isLoadingProducts } = useProducts('/products')
+
+  useEffect(() => {
+    if (!isLoadingProducts) {
+      const filter = products.filter(product => product.category === category.category)
+      if (filter) {
+        setFilterProducts(filter)
+      }
+    }
+  }, [isLoadingProducts])
 
   return (
     <>
@@ -29,7 +39,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
         </div>
       </div>
       {
-        isLoading
+        filterProducts.length === 0
           ? (
             <div className="flex w-full">
               <div className="m-auto mt-16 mb-16">
@@ -40,7 +50,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
           : <div className='flex'>
             <div className='w-1280 m-auto flex gap-2 pt-4 pb-4 flex-wrap'>
               {
-                products.map(product => (
+                filterProducts.map(product => (
                   <ProductCard key={product._id} product={product} />
                 ))
               }

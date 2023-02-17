@@ -16,7 +16,7 @@ const CartPage = () => {
     setCart(JSON.parse(localStorage.getItem('cart')!))
   }, [])
 
-  const { products, isLoading } = useProducts('/products')
+  const { products, isLoadingProducts } = useProducts('/products')
 
   return (
     <>
@@ -119,7 +119,7 @@ const CartPage = () => {
         </div>
       </div>
       {
-        isLoading
+        isLoadingProducts
           ? (
             <div className="flex w-full">
               <div className="m-auto mt-16 mb-16">

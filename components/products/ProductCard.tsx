@@ -58,7 +58,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         {
           product.reviews
             ? <ReviewsProductCard product={product} quantity={quantity} stars={stars} />
-            : ''
+            : <div className='w-1 h-2' />
         }
         <Link href={`productos/${ product.slug }`} prefetch={ false }>
           <span className='font-light'>{ product.name }</span>

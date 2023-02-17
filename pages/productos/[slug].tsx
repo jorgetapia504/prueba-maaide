@@ -28,7 +28,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   })
   const [scrollPosition, setScrollPosition] = useState(0)
 
-  const { products, isLoading } = useProducts('/products')
+  const { products, isLoadingProducts } = useProducts('/products')
 
   const handleScroll = () => {
     const position = window.scrollY
@@ -176,7 +176,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
         </div>
       </div>
       {
-        isLoading
+        isLoadingProducts
           ? (
             <div className="flex w-full">
               <div className="m-auto mt-16 mb-16">

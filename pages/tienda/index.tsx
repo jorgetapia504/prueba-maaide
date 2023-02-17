@@ -6,7 +6,7 @@ import { ProductCard } from '../../components/products'
 
 const Shop = () => {
 
-  const { products, isLoading } = useProducts('/products')
+  const { products, isLoadingProducts } = useProducts('/products')
 
   return (
     <>
@@ -20,7 +20,7 @@ const Shop = () => {
         </div>
       </div>
       {
-        isLoading
+        isLoadingProducts
           ? (
             <div className="flex w-full">
               <div className="m-auto mt-16 mb-16">
