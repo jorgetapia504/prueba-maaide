@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import React, { useState, useEffect } from 'react'
-import { ProductCard } from '../../components/products'
+import { ProductCard3 } from '../../components/products'
 import { Spinner } from '../../components/ui'
 import { dbProducts } from '../../database'
 import { useProducts } from '../../hooks'
@@ -51,7 +51,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
             <div className='w-1280 m-auto flex gap-2 pt-4 pb-4 flex-wrap'>
               {
                 filterProducts.map(product => (
-                  <ProductCard key={product._id} product={product} />
+                  <ProductCard3 key={product._id} product={product} />
                 ))
               }
             </div>

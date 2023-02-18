@@ -7,14 +7,15 @@ import CartContext from '../../context/cart/CartContext';
 
 interface Props {
   setCartView: any
+  setCartPc?: any
 }
 
-export const NavbarCart: React.FC<Props> = ({ setCartView }) => {
+export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc }) => {
 
   const {cart, setCart} = useContext(CartContext)
 
   return (
-    <div className='ml-auto p-4 rounded-md shadow-md bg-white z-40 w-full dark:bg-neutral-900 dark:border dark:border-neutral-800 400:w-96'>
+    <div onMouseEnter={() => setCartPc(false)} onMouseLeave={() => setCartPc(true)} className='ml-auto p-4 rounded-md shadow-md bg-white z-40 w-full dark:bg-neutral-900 dark:border dark:border-neutral-800 400:w-96'>
       <h4 className='text-center mb-3 text-xl pb-2 border-b w-full dark:border-neutral-800'>Carrito</h4>
       {
         cart?.length
