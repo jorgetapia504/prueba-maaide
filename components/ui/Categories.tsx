@@ -1,13 +1,15 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import { ICategory } from '../../interfaces'
-import { Spinner } from './'
 
 interface Props {
   categories: ICategory[]
 }
 
 export const Categories: React.FC<Props> = ({ categories }) => {
+
+  const [imgLoad, setImgLoad] = useState(false)
+
   return (
     <>
       {
@@ -18,8 +20,8 @@ export const Categories: React.FC<Props> = ({ categories }) => {
                 {
                   categories.map(category => (
                     <Link href={`/tienda/${category.slug}`} key={category._id} className='w-full mb-2 p-1 bg-contain bg-center 500:w-1/2 800:w-1/3 hover:opacity-70'>
-                      <img src={category.image} alt={category.category} />
-                      <h2 className='text-xl text-center mt-2 font-light'>{category.category}</h2>
+                      <img onLoad={() => setImgLoad(true)} src={category.image} alt={category.category} />
+                      <h2 style={{ display: imgLoad ? 'block' : 'none' }} className='text-xl text-center mt-2 font-light'>{category.category}</h2>
                     </Link>
                   ))
                 }

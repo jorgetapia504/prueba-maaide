@@ -24,6 +24,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const [mounted, setMounted] = useState(false)
   const [cartView, setCartView] = useState('hidden')
   const [cartPc, setCartPc] = useState(true)
+  const [loading, setLoading] = useState('block')
 
   const router = useRouter()
   const {cart} = useContext(CartContext)
@@ -54,6 +55,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
 
   return (
     <>
+    <div className={`${loading} fixed h-full w-full z-50 transition-all duration-200 bg-white`} />
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
@@ -67,14 +69,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
           <div className='flex gap-2'>
             {
               !mounted
-                ? ''
+                ? <Link href='/'><div className='h-14 w-1' /></Link>
                 : theme === 'system'
                 ? systemTheme === 'dark'
-                  ? <Link href='/'><img className='w-44' src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' /></Link>
-                  : <Link href='/'><img className='w-44' src='https://res.cloudinary.com/blasspod/image/upload/v1664841659/blaspod/ouxxwsmqodpemvffqs7b.png' /></Link>
+                  ? <Link href='/'><img className='h-14' onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' /></Link>
+                  : <Link href='/'><img className='h-14' onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/blasspod/image/upload/v1664841659/blaspod/ouxxwsmqodpemvffqs7b.png' /></Link>
                 : theme === 'dark'
-                  ? <Link href='/'><img className='w-44' src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' /></Link>
-                  : <Link href='/'><img className='w-44' src='https://res.cloudinary.com/blasspod/image/upload/v1664841659/blaspod/ouxxwsmqodpemvffqs7b.png' /></Link>
+                  ? <Link href='/'><img className='h-14' onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' /></Link>
+                  : <Link href='/'><img className='h-14' onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/blasspod/image/upload/v1664841659/blaspod/ouxxwsmqodpemvffqs7b.png' /></Link>
             }
           </div>
           {
