@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { useProducts } from '../../hooks'
 import { ICategory } from '../../interfaces'
+import { ProductList } from '../products'
+import { Spinner } from './Spinner'
 
 interface Props {
   categories: ICategory[]
@@ -8,6 +11,7 @@ interface Props {
 
 export const Categories: React.FC<Props> = ({ categories }) => {
 
+  const {isLoadingProducts, products} = useProducts('/products')
   const [imgLoad, setImgLoad] = useState(false)
 
   return (
@@ -29,6 +33,17 @@ export const Categories: React.FC<Props> = ({ categories }) => {
             </div>
           )
           : ''
+      }
+      {
+        imgLoad
+          ? <ProductList products={products} title='Mas vendidos' />
+          : (
+            <div className="flex w-full">
+              <div className="m-auto mt-16 mb-16">
+                <Spinner />
+              </div>
+            </div>
+          )
       }
     </>
   )
