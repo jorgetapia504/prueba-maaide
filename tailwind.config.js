@@ -68,7 +68,8 @@ module.exports = {
         'det': '0 1px 8px 0px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
       },
       spacing: {
-        '60': '60px'
+        '60': '60px',
+        '57': '57px'
       }
     },
     fontFamily: {
