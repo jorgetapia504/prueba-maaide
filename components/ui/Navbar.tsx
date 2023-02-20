@@ -67,7 +67,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
           </div>
           : ''
       }
-      <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full transition-all duration-200 z-30 dark:bg-neutral-900 dark:border-neutral-800'>
+      <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full z-30 dark:bg-neutral-900 dark:border-neutral-800'>
         <div className='m-auto w-1280 flex justify-between z-40 pl-2 pr-2'>
           <div className='flex gap-2'>
             {
