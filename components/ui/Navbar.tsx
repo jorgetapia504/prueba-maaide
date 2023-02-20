@@ -9,6 +9,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { AiOutlineRight } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 import CartContext from '../../context/cart/CartContext'
+import { useCategories } from '../../hooks'
 
 interface Props {
   menu: any,
@@ -25,7 +26,9 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const [cartView, setCartView] = useState('hidden')
   const [cartPc, setCartPc] = useState(true)
   const [loading, setLoading] = useState('block')
+  const [navCategories, setNavCategories] = useState('hidden')
 
+  const { categories } = useCategories('/categories')
   const router = useRouter()
   const {cart} = useContext(CartContext)
 
@@ -55,7 +58,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
 
   return (
     <>
-    <div className={`${loading} fixed h-full w-full z-50 transition-all duration-200 bg-white`} />
+    <div className={`${loading} fixed h-full w-full z-50 bg-white`} />
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
@@ -84,7 +87,9 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               ? <>
                 <div className='hidden gap-6 575:flex'>
                   <Link className='mt-auto mb-auto font-light' href='/'>Inicio</Link>
-                  <Link className='mt-auto mb-auto font-light' href='/tienda'>Tienda</Link>
+                  <Link className='flex h-full' href='/tienda' onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')} >
+                    <div className='mt-auto mb-auto font-light'>Tienda</div>
+                  </Link>
                   <Link className='mt-auto mb-auto font-light' href='/contacto'>Contacto</Link>
                   <CiUser className='mt-auto mb-auto text-2xl cursor-pointer' />
                   {
@@ -194,6 +199,17 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               }, 100)
             }} href='/contacto'>Contacto<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
+        </div>
+        <div className={`${navCategories} absolute top-57 w-full`} onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')}>
+          {
+            categories?.length
+              ? categories.map(category => (
+                <Link href={`/tienda/${category.slug}`} className='w-1/3 bg-cover flex bg-center' style={{ backgroundImage: `url(${category.image})`, height: '400px' }} key={category._id}>
+                  <h2 className='m-auto text-center text-white text-4xl font-semibold'>{category.category}</h2>
+                </Link>
+              ))
+              : ''
+          }
         </div>
       </div>
       { children }

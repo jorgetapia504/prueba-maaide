@@ -1,6 +1,5 @@
 import { HomeSlider } from "../components/ui/HomeSlider"
 import { useCategories } from "../hooks"
-import { ProductList } from '../components/products'
 import { Categories, Spinner } from "../components/ui"
 import Head from "next/head"
 

@@ -5,12 +5,12 @@ import { IoIosTimer } from 'react-icons/io'
 export const Subscribe = () => {
   return (
     <>
-      <div className='w-full bg-neutral-100 pl-4 pr-4 flex transition-all duration-200 dark:bg-neutral-700/60'>
+      <div className='w-full bg-neutral-100 pl-4 pr-4 flex dark:bg-neutral-900'>
         <form className='m-auto w-1280 mt-16 mb-16'>
           <h4 className='mb-4 text-xl text-center'>Suscribete para recibir ofertas exclusivas, sorteos y promociones</h4>
           <div className='flex'>
-            <input type='email' placeholder='Email' className='p-2 w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main' />
-            <button className='pt-2 pb-2 pl-10 pr-10 bg-neutral-800 text-white'>Envíar</button>
+            <input type='email' placeholder='Email' className='font-light z-30 p-2 w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:bg-neutral-800' />
+            <button className='pt-2 pb-2 pl-10 pr-10 bg-main text-white'>Envíar</button>
           </div>
         </form>
       </div>

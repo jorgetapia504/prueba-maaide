@@ -48,8 +48,8 @@ export const ReviewsProduct: React.FC<Props> = ({ stars, quantity, reviews }) =>
           reviews.map(review => {
             const date = new Date(review.createdAt)
             return (
-              <div key={review._id} className='pb-2 mb-2 border p-2 rounded-md'>
-                <div className='flex gap-2'>
+              <div key={review._id} className='pb-2 mb-2 border p-2 rounded-md dark:border-neutral-800'>
+                <div className='flex gap-2 justify-between'>
                   <span>{review.name}</span>
                   <span className='mt-auto mb-auto font-light'>{date.toLocaleTimeString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" })}</span>
                 </div>

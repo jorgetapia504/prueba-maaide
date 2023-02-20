@@ -6,7 +6,4 @@
   html {
     font-family: poppins, system-ui, sans-serif;
   }
-  body {
-    @apply dark:bg-neutral-900 transition-all duration-200
-  }
 }

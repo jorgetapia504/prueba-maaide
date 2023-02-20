@@ -79,13 +79,6 @@ const ProductPage: React.FC<Props> = ({ product }) => {
             </div>
           </div>
           <div className='w-full mt-2 lg:w-1/2 lg:mt-11'>
-            {
-              product.beforePrice
-                ? <div className='mb-4'>
-                  <span className='bg-main w-fit text-white pt-2 pb-2 pl-4 pr-4 text-xl mb-2'>OFERTA</span>
-                </div>
-                : ''
-            }
             <h1 className='text-3xl mb-2'>{ product.name }</h1>
             {
               product.reviews
@@ -138,7 +131,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 product.variations
                   ? tempCartProduct.variation
                     ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
-                    : <ButtonNone>Añadir al Carrito</ButtonNone>
+                    : <ButtonNone>Añadir al carrito</ButtonNone>
                   : <ButtonAddToCart tempCartProduct={tempCartProduct} />
               }
             </div>
