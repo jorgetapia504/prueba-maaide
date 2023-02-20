@@ -202,7 +202,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               {
                 categories?.length
                   ? categories.map(category => (
-                    <Link href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
+                    <Link onClick={() => {
+                      setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+                      setTimeout(() => {
+                        setIndex('hidden')
+                      }, 100)
+                    }} href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
                       <img className='w-28' src={category.image} />
                       <h2 className='mt-auto mb-auto'>{category.category}</h2>
                     </Link>
