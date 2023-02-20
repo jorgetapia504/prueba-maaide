@@ -9,7 +9,7 @@ export const Subscribe = () => {
         <form className='m-auto w-1280 mt-16 mb-16'>
           <h4 className='mb-4 text-xl text-center'>Suscribete para recibir ofertas exclusivas, sorteos y promociones</h4>
           <div className='flex'>
-            <input type='email' placeholder='Email' className='font-light z-30 p-2 w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:bg-neutral-800' />
+            <input type='email' placeholder='Email' className='font-light p-2 w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:bg-neutral-800' />
             <button className='pt-2 pb-2 pl-10 pr-10 bg-main text-white'>Envíar</button>
           </div>
         </form>
