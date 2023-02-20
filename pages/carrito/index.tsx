@@ -110,9 +110,9 @@ const CartPage = () => {
                       : ''
                   }
                 </div>
-              </div>
-              <div className='mt-8 ml-auto w-full flex'>
-                <Link className='ml-auto' href='/finalizar-compra'><Button>Finalizar compra</Button></Link>
+                <div className='mt-3 ml-auto w-full flex'>
+                  <Link className='pt-1.5 pb-1.5 w-full rounded-md bg-main text-white' href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
+                </div>
               </div>
             </div>
           </div>

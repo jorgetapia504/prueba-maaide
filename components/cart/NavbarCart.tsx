@@ -86,7 +86,7 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc }) => {
           </>
           : <>
             <p className='font-light mb-4'>No tienes productos añadidos al carrito</p>
-            <Link className='pt-1.5 pb-1.5 pl-7 pr-7 rounded-md bg-main text-white' href='/tienda' onClick={() => setCartView('hidden')}>Ir a la tienda</Link>
+            <Link className='pt-1.5 pb-1.5 rounded-md bg-main text-white' href='/tienda' onClick={() => setCartView('hidden')}><button className='w-full'>Ir a la tienda</button></Link>
           </>
       }
     </div>
