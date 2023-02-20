@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
 import { ProductCard3 } from '../../components/products'
 import { Spinner } from '../../components/ui'
@@ -15,6 +16,7 @@ interface Props {
 const CategoryPage: React.FC<Props> = ({ category }) => {
 
   const [filterProducts, setFilterProducts] = useState<IProduct[]>([])
+  const router = useRouter()
 
   const { products, isLoadingProducts } = useProducts('/products')
 
@@ -25,7 +27,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
         setFilterProducts(filter)
       }
     }
-  }, [isLoadingProducts])
+  }, [isLoadingProducts, router.asPath])
 
   return (
     <>
