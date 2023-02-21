@@ -3,9 +3,9 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
 import { ProductCard3 } from '../../components/products'
-import { Spinner } from '../../components/ui'
+import { Spinner, CategoriesShop } from '../../components/ui'
 import { dbProducts } from '../../database'
-import { useProducts } from '../../hooks'
+import { useProducts, useCategories } from '../../hooks'
 import { ICategory } from '../../interfaces'
 import { IProduct } from '../../interfaces'
 
@@ -17,6 +17,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
 
   const [filterProducts, setFilterProducts] = useState<IProduct[]>([])
   const router = useRouter()
+  const { categories } = useCategories('/categories')
 
   const { products, isLoadingProducts } = useProducts('/products')
 
@@ -40,6 +41,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
           <p className='font-light text-lg text-white w-full text-center'>{category.description}</p>
         </div>
       </div>
+      <CategoriesShop categories={categories} />
       {
         filterProducts.length === 0
           ? (

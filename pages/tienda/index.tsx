@@ -1,12 +1,15 @@
 import React from 'react'
 import Head from 'next/head'
-import { useProducts } from '../../hooks'
-import { Spinner } from '../../components/ui'
+import { useCategories, useProducts } from '../../hooks'
+import { Spinner, CategoriesShop } from '../../components/ui'
 import { ProductCard } from '../../components/products'
+import { useRouter } from 'next/router'
 
 const Shop = () => {
 
   const { products, isLoadingProducts } = useProducts('/products')
+  const { categories } = useCategories('/categories')
+  const router = useRouter()
 
   return (
     <>
@@ -19,6 +22,7 @@ const Shop = () => {
           <p className='font-light text-lg text-white w-full text-center'>Encuentra los productos de la más alta calidad y siempre con increíbles precios.</p>
         </div>
       </div>
+      <CategoriesShop categories={categories} />
       {
         isLoadingProducts
           ? (

@@ -87,7 +87,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               ? <>
                 <div className='hidden gap-6 575:flex'>
                   <Link className='mt-auto mb-auto font-light' href='/'>Inicio</Link>
-                  <Link className='flex h-full' href='/tienda' onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')} >
+                  <Link className='flex h-full' href='/tienda' onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')} onClick={() => setNavCategories('hidden')} >
                     <div className='mt-auto mb-auto font-light'>Tienda</div>
                   </Link>
                   <Link className='mt-auto mb-auto font-light' href='/contacto'>Contacto</Link>
