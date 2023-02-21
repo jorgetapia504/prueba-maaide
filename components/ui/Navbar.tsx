@@ -172,7 +172,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             </div>
           </div>
         </div>
-        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '57px', height: 'calc(100vh - 60px)' }}>
+        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '57px', height: 'calc(100vh - 57px)' }}>
           <div className='w-1/6' onClick={() => {
             setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
             setTimeout(() => {
