@@ -46,6 +46,9 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   const selectVariation = (e: any) => {
     const variation = product.variations?.find(variation => variation.variation === e.target.value)
     setTempCartProduct({...tempCartProduct, variation: variation})
+    if (e.target.value === 'Seleccionar variación') {
+      setTempCartProduct({...tempCartProduct, variation: undefined})
+    }
   }
 
   const onUpdateQuantity = ( quantity: number ) => {
@@ -64,7 +67,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
         <title>{product.name}</title>
       </Head>
       {
-        scrollPosition >= 400
+        scrollPosition >= 350
           ? <ProductDetails product={product} setTempCartProduct={setTempCartProduct} tempCartProduct={tempCartProduct} />
           : ''
       }
@@ -111,7 +114,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
             <span className='mb-2 font-light text-sm block'>Stock: { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</span>
             {
               product.variations
-                ? <select onChange={selectVariation} className='border p-1 rounded-md font-light mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600'>
+                ? <select onChange={selectVariation} value={tempCartProduct.variation?.variation ? tempCartProduct.variation.variation : 'Seleccionar variación'} className='border p-1 rounded-md font-light mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600'>
                   <option>Seleccionar variación</option>
                   {
                     product.variations?.map(variation => (

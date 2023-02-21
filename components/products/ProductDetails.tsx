@@ -1,7 +1,7 @@
 import React from 'react'
 import { ICartProduct, IProduct } from '../../interfaces'
 import { NumberFormat } from '../../utils'
-import { Button, ButtonAddToCart, ItemCounter } from '../ui'
+import { ButtonAddToCart, ButtonNone, ItemCounter } from '../ui'
 
 interface Props {
   product: IProduct,
@@ -16,6 +16,11 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
       ...currentProduct,
       quantity
     }))
+  }
+
+  const selectVariation = (e: any) => {
+    const variation = product.variations?.find(variation => variation.variation === e.target.value)
+    setTempCartProduct({...tempCartProduct, variation: variation})
   }
 
   return (
@@ -35,7 +40,7 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
             </div>
             {
               product.variations
-                ? <select className='border p-1 rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main'>
+                ? <select onChange={selectVariation} value={tempCartProduct.variation?.variation ? tempCartProduct.variation.variation : 'Seleccionar variación'} className='border p-1 rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main'>
                   <option>Seleccionar vartiación</option>
                   {
                     product.variations.map(variation => (
@@ -54,7 +59,13 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
               updatedQuantity={ onUpdateQuantity }
               maxValue={ product.stock }
             />
-            <ButtonAddToCart tempCartProduct={tempCartProduct} />
+            {
+              product.variations
+                ? tempCartProduct.variation
+                  ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
+                  : <ButtonNone>Añadir al carrito</ButtonNone>
+                : <ButtonAddToCart tempCartProduct={tempCartProduct} />
+            }
           </div>
         </div>
       </div>
