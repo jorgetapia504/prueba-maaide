@@ -1,4 +1,6 @@
-import React, { useContext, useState } from 'react'
+import axios from 'axios'
+import Cookies from 'js-cookie'
+import React, { useContext, useState, useEffect } from 'react'
 import CartContext from '../../context/cart/CartContext'
 import { ICartProduct } from '../../interfaces'
 
@@ -11,7 +13,7 @@ export const ButtonAddToCart: React.FC<Props> = ({ tempCartProduct }) => {
   const {setCart} = useContext(CartContext)
   const [text, setText] = useState('Añadir al carrito')
 
-  const addToCart = () => {
+  const addToCart = async () => {
     setText('Producto añadido')
     if (localStorage.getItem('cart')) {
       const cart = JSON.parse(localStorage.getItem('cart')!)
@@ -29,6 +31,8 @@ export const ButtonAddToCart: React.FC<Props> = ({ tempCartProduct }) => {
       localStorage.setItem('cart', `[${JSON.stringify(tempCartProduct)}]`)
       setCart(JSON.parse(localStorage.getItem('cart')!))
     }
+    const prueba = await axios.post('http://localhost:4000/add-cart', { name: tempCartProduct.name, price: tempCartProduct.price, quantity: tempCartProduct.quantity, category: tempCartProduct.category, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+    console.log(prueba)
     setTimeout(() => {
       setText('Añadir al carrito')
     }, 3000)

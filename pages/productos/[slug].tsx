@@ -24,7 +24,8 @@ const ProductPage: React.FC<Props> = ({ product }) => {
     beforePrice: product.beforePrice,
     slug: product.slug,
     quantity: 1,
-    stock: product.stock
+    stock: product.stock,
+    category: product.category
   })
   const [scrollPosition, setScrollPosition] = useState(0)
 

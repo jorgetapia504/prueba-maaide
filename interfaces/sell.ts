@@ -16,7 +16,9 @@ export interface ISell {
   shipping: number,
   serviceShipping?: string
   pay: string
-  state: string
+  state: string,
+  fbp?: string
+  fbc?: string
 
   createdAt?: Date
   updatedAt?: Date

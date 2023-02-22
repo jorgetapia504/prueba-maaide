@@ -10,4 +10,5 @@ export interface ICartProduct {
   slug: string
   quantity: number
   stock?: number
+  category: string
 }

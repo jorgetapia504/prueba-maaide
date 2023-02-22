@@ -2,11 +2,10 @@ import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import React, { PropsWithChildren, useEffect, useState, useContext } from 'react'
 import { BsFillMoonFill, BsFillSunFill, BsBag } from 'react-icons/bs'
-import { CiUser } from 'react-icons/ci'
 import { NavbarCart } from '../cart'
 import { FiMenu } from 'react-icons/fi'
 import { IoCloseOutline } from 'react-icons/io5'
-import { AiOutlineRight } from 'react-icons/ai'
+import { AiOutlineRight, AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import { useRouter } from 'next/router'
 import CartContext from '../../context/cart/CartContext'
 import { useCategories } from '../../hooks'
@@ -27,6 +26,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const [cartPc, setCartPc] = useState(true)
   const [loading, setLoading] = useState('block')
   const [navCategories, setNavCategories] = useState('hidden')
+  const [categoriesPhone, setCategoriesPhone] = useState('hidden')
 
   const { categories } = useCategories('/categories')
   const router = useRouter()
@@ -91,7 +91,6 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     <div className='mt-auto mb-auto font-light'>Tienda</div>
                   </Link>
                   <Link className='mt-auto mb-auto font-light' href='/contacto'>Contacto</Link>
-                  <CiUser className='mt-auto mb-auto text-2xl cursor-pointer' />
                   {
                     cartView === 'hidden'
                       ? (
@@ -113,7 +112,6 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   {renderThemeChanger()}
                 </div>
                 <div className='flex gap-4 575:hidden'>
-                  <CiUser className='mt-auto mb-auto text-2xl cursor-pointer' />
                   {
                     cartView === 'hidden'
                       ? (
@@ -179,42 +177,52 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setIndex('hidden')
             }, 100)
           }} />
-          <div className={`${menu} shadow-md bg-white overflow-hidden dark:border dark:border-neutral-800 dark:bg-neutral-900`}>
+          <div className={`${menu} shadow-md transition-all duration-300 bg-white overflow-hidden dark:bg-neutral-900`}>
             <Link className={`mb-4 font-light flex pb-2 border-b dark:border-neutral-600`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
               }, 100)
             }} href='/'>Inicio<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
-            <Link className={`mb-4 font-light flex pb-2 border-b dark:border-neutral-600`} onClick={() => {
-              setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
-              setTimeout(() => {
-                setIndex('hidden')
-              }, 100)
-            }} href='/tienda'>Tienda<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
+            <div className=' border-b mb-4 dark:border-neutral-600'>
+              <div className={` font-light flex justify-between pb-2`}>
+                <Link onClick={() => {
+                  setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+                  setTimeout(() => {
+                    setIndex('hidden')
+                  }, 100)
+                }} href='/tienda'>Tienda</Link>
+                {
+                  categoriesPhone === 'hidden'
+                    ? <button onClick={() => setCategoriesPhone('block') }><AiOutlineDown className='ml-auto text-lg text-neutral-500' /></button>
+                    : <button onClick={() => setCategoriesPhone('hidden') }><AiOutlineUp className='ml-auto text-lg text-neutral-500' /></button>
+                }
+                
+              </div>
+              <div className={`${categoriesPhone} flex flex-col gap-2 mb-4`}>
+                {
+                  categories?.length
+                    ? categories.map(category => (
+                      <Link onClick={() => {
+                        setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+                        setTimeout(() => {
+                          setIndex('hidden')
+                        }, 100)
+                      }} href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
+                        <img className='w-28' src={category.image} />
+                        <h2 className='mt-auto mb-auto'>{category.category}</h2>
+                      </Link>
+                    ))
+                    : ''
+                }
+              </div>
+            </div>
             <Link className={`mb-4 font-light flex pb-2 border-b dark:border-neutral-600`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
               }, 100)
             }} href='/contacto'>Contacto<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
-            <div className='flex flex-col gap-2 mt-6'>
-              {
-                categories?.length
-                  ? categories.map(category => (
-                    <Link onClick={() => {
-                      setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
-                      setTimeout(() => {
-                        setIndex('hidden')
-                      }, 100)
-                    }} href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
-                      <img className='w-28' src={category.image} />
-                      <h2 className='mt-auto mb-auto'>{category.category}</h2>
-                    </Link>
-                  ))
-                  : ''
-              }
-            </div>
           </div>
         </div>
         <div className={`${navCategories} absolute top-57 w-full`} onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')}>

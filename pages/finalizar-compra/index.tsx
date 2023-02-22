@@ -6,6 +6,8 @@ import { FreeShipping, NumberFormat } from '../../utils'
 import Link from 'next/link'
 import { AiOutlineLeft, AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 import Head from 'next/head'
+import Cookies from 'js-cookie'
+import axios from 'axios'
 
 const CheckOut = () => {
 
@@ -19,18 +21,22 @@ const CheckOut = () => {
     cart: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('cart')!) : [],
     shipping: 0,
     pay: '',
-    state: '',
-    total: 0
+    state: 'Pago iniciado',
+    total: 0,
+    fbp: Cookies.get('_fbp'),
+    fbc: Cookies.get('_fbc')
   })
   const [cart, setCart] = useState<ICartProduct[]>()
   const [shipping, setShipping] = useState<IShipping[]>()
   const [details, setDetails] = useState('hidden')
 
-  const getCart = () => {
+  const getCart = async () => {
     if (typeof window !== 'undefined') {
       const cartLocal = JSON.parse(localStorage.getItem('cart')!)
       setCart(cartLocal)
       setSell({ ...sell, total: cartLocal.reduce((bef: any, curr: any) => bef + curr.price, 0) })
+      const prueba = await axios.post('http://localhost:4000/information', { cart: cartLocal, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+      console.log(prueba)
     }
   }
 
@@ -45,6 +51,11 @@ const CheckOut = () => {
   const shippingChange = (e: any) => {
     const cartLocal = JSON.parse(localStorage.getItem('cart')!)
     setSell({ ...sell, serviceShipping: e.target.className , shipping: e.target.value, total: cartLocal.reduce((bef: any, curr: any) => bef + curr.price, 0) + Number(e.target.value) })
+  }
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+    await axios.post('http://localhost:4000/sells', sell)
   }
 
   return (
@@ -196,7 +207,7 @@ const CheckOut = () => {
             }
             <div className='flex gap-2 justify-between mt-auto mb-auto font-light'>
               <div className='mt-auto mb-auto'><Link href='/carrito'><span className='flex gap-2 text-sm'><AiOutlineLeft className='mt-auto mb-auto' />Regresar al carrito</span></Link></div>
-              <Button>Pagar</Button>
+              <button onClick={handleSubmit} className='pt-1.5 pb-1.5 pl-7 pr-7 rounded-md bg-main text-white'>Pagar</button>
             </div>
           </div>
           <div className='w-5/12 h-fit shadow-md rounded-md p-4 hidden sticky top-28 bg-gray-50 dark:border dark:border-neutral-700 dark:bg-neutral-800 1010:block'>
