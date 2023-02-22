@@ -35,7 +35,7 @@ const CheckOut = () => {
       const cartLocal = JSON.parse(localStorage.getItem('cart')!)
       setCart(cartLocal)
       setSell({ ...sell, total: cartLocal.reduce((bef: any, curr: any) => bef + curr.price, 0) })
-      await axios.post(`${process.env.SERVER_URL}/information`, { cart: cartLocal, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+      await axios.post('https://server-production-e234.up.railway.app/information', { cart: cartLocal, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
     }
   }
 
@@ -54,7 +54,7 @@ const CheckOut = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    await axios.post(`${process.env.SERVER_URL}/sells`, sell)
+    await axios.post('https://server-production-e234.up.railway.app/sells', sell)
   }
 
   return (

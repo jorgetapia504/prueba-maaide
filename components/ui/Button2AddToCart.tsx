@@ -31,7 +31,7 @@ export const Button2AddToCart: React.FC<Props> = ({ tempCartProduct }) => {
       localStorage.setItem('cart', `[${JSON.stringify(tempCartProduct)}]`)
       setCart(JSON.parse(localStorage.getItem('cart')!))
     }
-    await axios.post(`${process.env.SERVER_URL}/add-cart`, { name: tempCartProduct.name, price: tempCartProduct.price, quantity: tempCartProduct.quantity, category: tempCartProduct.category, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+    await axios.post('https://server-production-e234.up.railway.app/add-cart', { name: tempCartProduct.name, price: tempCartProduct.price, quantity: tempCartProduct.quantity, category: tempCartProduct.category, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
     setTimeout(() => {
       setText('Añadir al carrito')
     }, 3000)

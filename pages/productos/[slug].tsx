@@ -34,7 +34,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   const { products, isLoadingProducts } = useProducts('/products')
 
   const submitViewContent = async () => {
-    await axios.post(`${process.env.SERVER_URL}/view-content`, { name: tempCartProduct.name, price: tempCartProduct.price, category: tempCartProduct.category, url: tempCartProduct.slug, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+    await axios.post('https://server-production-e234.up.railway.app/view-content', { name: tempCartProduct.name, price: tempCartProduct.price, category: tempCartProduct.category, url: tempCartProduct.slug, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
   }
 
   useEffect(() => {

@@ -14,7 +14,7 @@ export const Subscribe = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    const subscribe = await axios.post(`${process.env.SERVER_URL}/subscribe`, subscribeData)
+    const subscribe = await axios.post('https://server-production-e234.up.railway.app/subscribe', subscribeData)
     if (subscribe) {
       setSuccessSubscribe('block')
     }
