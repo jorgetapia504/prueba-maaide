@@ -35,8 +35,7 @@ const CheckOut = () => {
       const cartLocal = JSON.parse(localStorage.getItem('cart')!)
       setCart(cartLocal)
       setSell({ ...sell, total: cartLocal.reduce((bef: any, curr: any) => bef + curr.price, 0) })
-      const prueba = await axios.post('http://localhost:4000/information', { cart: cartLocal, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
-      console.log(prueba)
+      await axios.post(`${process.env.SERVER_URL}/information`, { cart: cartLocal, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
     }
   }
 
@@ -55,7 +54,7 @@ const CheckOut = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    await axios.post('http://localhost:4000/sells', sell)
+    await axios.post(`${process.env.SERVER_URL}/sells`, sell)
   }
 
   return (

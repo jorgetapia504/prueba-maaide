@@ -39,6 +39,7 @@ export interface IProductOffer {
   image: string
   slug: string
   variations?: IVariation[]
+  category: string
 }
 
 export interface IVariation {

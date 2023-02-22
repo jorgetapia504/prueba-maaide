@@ -9,6 +9,8 @@ import { ReviewsProduct, NoReviewsProduct } from '../../components/products/Revi
 import { useProducts } from '../../hooks'
 import Link from 'next/link'
 import Head from 'next/head'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 interface Props {
   product: IProduct
@@ -30,6 +32,14 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   const [scrollPosition, setScrollPosition] = useState(0)
 
   const { products, isLoadingProducts } = useProducts('/products')
+
+  const submitViewContent = async () => {
+    await axios.post(`${process.env.SERVER_URL}/view-content`, { name: tempCartProduct.name, price: tempCartProduct.price, category: tempCartProduct.category, url: tempCartProduct.slug, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+  }
+
+  useEffect(() => {
+    submitViewContent()
+  }, [])
 
   const handleScroll = () => {
     const position = window.scrollY

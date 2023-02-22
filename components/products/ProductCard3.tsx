@@ -19,7 +19,8 @@ export const ProductCard3: React.FC<Props> = ({ product }) => {
     beforePrice: product.beforePrice,
     slug: product.slug,
     quantity: 1,
-    stock: product.stock
+    stock: product.stock,
+    category: product.category
   })
   const [isHovered, setIsHovered] = useState(false)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
